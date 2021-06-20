@@ -1,0 +1,609 @@
+/*
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ * Any CSS and SCSS file within this directory, lib/assets/stylesheets, or any plugin's
+ * vendor/assets/stylesheets directory can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the bottom of the
+ * compiled file so the styles you add here take precedence over styles defined in any other CSS/SCSS
+ * files in this directory. Styles in this file should be added after the last require_* statement.
+ * It is generally better to create a new file per style scope.
+ *
+ *= require_tree .
+ *= require_self
+ */
+
+@import "bootstrap-sprockets";
+@import "bootstrap";
+html,
+body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    background-color: #f0f0ff;
+    padding-top: 32px;
+    clear: both;
+    border: border-box;
+    background-image: url("/assets/images/background.jpg");
+    background-repeat: repeat;
+    border-image-outset: 1em;
+}
+
+h1 {
+    font-family: 'Arial Narrow';
+}
+
+.alert {
+    margin-top: 1em;
+}
+
+.disabled {
+    pointer-events: none;
+}
+
+#top {
+    height: 800px;
+    width: 100%;
+    position: relative;
+}
+
+.top-image {
+    background-image: url("/assets/images/top_image.jpg");
+    background-size: cover;
+    height: 750px;
+    width: 102.3%;
+    position: absolute;
+    top: -5px;
+    left: -15px;
+    .top-title {
+        color: white;
+        font-size: 5em;
+        margin-top: 1em;
+        font-family: Cochin;
+        text-align: center;
+        text-shadow: 2px 2px 10px #46f, -2px 2px 10px #000, 2px -2px 10px #000, -2px -2px 10px #000;
+    }
+    .top-p {
+        color: white;
+        margin-top: 2em;
+        font-size: 20px;
+        font-family: Cochin;
+        text-align: center;
+        text-shadow: 2px 2px 10px #00f, -2px 2px 10px #000, 2px -2px 10px #000, -2px -2px 10px #000;
+    }
+}
+
+.introduction {
+    text-align: center;
+    margin-top: 3em;
+}
+
+.introduction-title {
+    border-bottom: 1px #888 solid;
+    padding-bottom: 19px;
+    margin-bottom: 40px;
+    font-family: 'Times New Roman';
+    margin: 0 auto;
+    width: 70%;
+}
+
+.introduction-p {
+    font-size: medium;
+    font-family: serif;
+    line-height: 2.5em;
+    margin: 2em 0 5em 0;
+}
+
+header a {
+    text-decoration: none;
+}
+
+header a:hover {
+    text-decoration: none;
+}
+
+.animation {
+    transition: all 0.2s;
+}
+
+.btn {
+    margin: 1em 0;
+}
+
+.form-label {
+    margin-top: 1em;
+}
+
+.pad-top {
+    padding-top: 2em;
+}
+
+header {
+    width: 100%;
+    height: 62px;
+    background-color: rgba(38, 114, 228, 0.95);
+    box-shadow: 0 2px 4px -2px gray;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 5;
+}
+
+.header-title {
+    padding: 0 0 8px 6px;
+    color: white;
+    font-size: 2em;
+    font-weight: bold;
+    font-family: sans-serif;
+    line-height: 62px;
+    margin: 0 0.6em;
+    float: left;
+    transition: all 0.3s;
+    display: inline;
+}
+
+.header-title:hover {
+    color: white;
+}
+
+.header-list {
+    list-style: none;
+    margin-left: 75%;
+    display: block;
+}
+
+.header-link {
+    height: 62px;
+    width: 7em;
+    line-height: 62px;
+    color: white;
+    font-size: large;
+    font-weight: bold;
+    font-family: 'Courier New';
+    display: block;
+    float: left;
+    border: rgb(86, 146, 236) 2px solid;
+    text-align: center;
+    transition: all 0.3s;
+    box-shadow: 4px 6px 4px 1px rgb(78, 146, 235) inset;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    padding: 0 3px 3px 3px;
+}
+
+.user-image-link {
+    height: 1.6em;
+    width: 1.6em;
+    border-radius: 6em;
+    margin: 0 5px 3px 3px;
+}
+
+.header-link-selected {
+    box-shadow: 4px 4px 4px rgb(22, 99, 199) inset;
+    color: #b2c9ee;
+}
+
+.header-link:hover {
+    box-shadow: 5px 5px 4px rgb(22, 99, 199) inset;
+    text-shadow: 4px 4px rgb(22, 99, 199);
+    color: white;
+}
+
+.form-control {
+    height: 2em;
+}
+
+.container {
+    background-color: #f6f6ff;
+    box-shadow: 4px 4px 6px -2px gray;
+    height: 140em;
+    width: 80%;
+    position: relative;
+}
+
+.smaller-container {
+    width: 80%;
+    margin: 0 auto;
+}
+
+.user-image {
+    height: 6em;
+    width: 6em;
+    border-radius: 6em;
+    margin-top: 1em;
+    object-fit: cover;
+}
+
+.user-new {
+    padding-bottom: 10px;
+    border-bottom: #99f 1px solid;
+}
+
+.login-form {
+    height: fit-content;
+}
+
+.form-group {
+    height: 2em;
+    margin: 1em 0;
+}
+
+.form {
+    border: #aaa 1px solid;
+    height: 2.5em;
+}
+
+.form-group {
+    height: 4em;
+}
+
+.text-area {
+    height: 7em;
+}
+
+.memory-spot {
+    font-family: 'Courier New';
+}
+
+.memory-show {
+    height: 25em;
+    width: 80%;
+    margin: auto;
+    margin-top: 1em;
+    background-color: white;
+    border: #eee 1px solid;
+    box-shadow: 6px 6px 4px -2px gray;
+    position: relative;
+}
+
+.memory-about {
+    padding: 1em 1.5em;
+}
+
+.memory-time {
+    position: absolute;
+    bottom: 1em;
+    right: 2em;
+}
+
+footer {
+    height: 20em;
+    width: auto;
+    background-color: #0f0f66;
+    padding-bottom: 4em;
+}
+
+#user_btn {
+    margin: 2em 2em 0 0;
+}
+
+#memory_title {
+    height: 4em;
+}
+
+.memory-title {
+    border-bottom: #aaa 1px solid;
+    padding-bottom: 3px;
+    margin-bottom: 1em;
+}
+
+#me-btn {
+    text-align: center;
+    margin-left: 30em;
+}
+
+#map-container {
+    width: 100%;
+    height: 100%;
+    position: relative;
+    font-family: "Roboto", sans-serif;
+    box-sizing: border-box;
+}
+
+#map-container button {
+    background: none;
+    color: inherit;
+    border: none;
+    padding: 0;
+    font: inherit;
+    font-size: inherit;
+    cursor: pointer;
+}
+
+#map {
+    position: absolute;
+    height: 600px;
+    width: 600px;
+    left: 33%;
+    top: 7%;
+    right: 0;
+    bottom: 0;
+}
+
+#locations-panel {
+    position: absolute;
+    left: 0;
+    width: 22em;
+    top: 0;
+    bottom: 0;
+    overflow-y: auto;
+    background: white;
+    padding: 0.5em;
+    box-sizing: border-box;
+}
+
+@media only screen and (max-width: 876px) {
+    #map {
+        left: 0;
+        bottom: 50%;
+    }
+    #locations-panel {
+        top: 50%;
+        right: 0;
+        width: unset;
+    }
+}
+
+#locations-panel-list>header {
+    padding: 1.4em 1.4em 0 1.4em;
+}
+
+#locations-panel-list h1.search-title {
+    font-size: 1em;
+    font-weight: 500;
+    margin: 0;
+}
+
+#locations-panel-list h1.search-title>img {
+    vertical-align: bottom;
+    margin-top: -1em;
+}
+
+#locations-panel-list .search-input {
+    width: 100%;
+    margin-top: 0.8em;
+    position: relative;
+}
+
+#locations-panel-list .search-input input {
+    width: 100%;
+    border: 1px solid rgba(0, 0, 0, 0.2);
+    border-radius: 0.3em;
+    height: 2.2em;
+    box-sizing: border-box;
+    padding: 0 2.5em 0 1em;
+    font-size: 1em;
+}
+
+#locations-panel-list .search-input-overlay {
+    position: absolute;
+}
+
+#locations-panel-list .search-input-overlay.search {
+    right: 2px;
+    top: 2px;
+    bottom: 2px;
+    width: 2.4em;
+}
+
+#locations-panel-list .search-input-overlay.search button {
+    width: 100%;
+    height: 100%;
+    border-radius: 0.2em;
+    color: black;
+    background: transparent;
+}
+
+#locations-panel-list .search-input-overlay.search .icon {
+    margin-top: 0.05em;
+    vertical-align: top;
+}
+
+#locations-panel-list .section-name {
+    font-weight: 500;
+    font-size: 0.9em;
+    margin: 1.8em 0 1em 1.5em;
+}
+
+#locations-panel-list .location-result {
+    position: relative;
+    padding: 0.8em 3.5em 0.8em 1.4em;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.12);
+    cursor: pointer;
+}
+
+#locations-panel-list .location-result:first-of-type {
+    border-top: 1px solid rgba(0, 0, 0, 0.12);
+}
+
+#locations-panel-list .location-result:last-of-type {
+    border-bottom: none;
+}
+
+#locations-panel-list .location-result.selected {
+    outline: 2px solid #4285f4;
+}
+
+#locations-panel-list button.select-location {
+    margin-bottom: 0.6em;
+}
+
+#locations-panel-list .location-result h2.name {
+    font-size: 1em;
+    font-weight: 500;
+    margin: 0;
+}
+
+#locations-panel-list .location-result .address {
+    font-size: 0.9em;
+    margin-bottom: 0.5em;
+}
+
+#locations-panel-list .location-result .details-button {
+    font-size: 0.9em;
+    color: #7e7efd;
+}
+
+#locations-panel-list .location-result .distance {
+    position: absolute;
+    top: 0.9em;
+    right: 0;
+    text-align: center;
+    font-size: 0.9em;
+    width: 5em;
+}
+
+#locations-panel-list .show-directions {
+    position: absolute;
+    right: 1.2em;
+    top: 2.3em;
+}
+
+#location-results-list {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
+
+
+/* ------------- DETAILS PANEL ------------------------------- */
+
+#locations-panel-details {
+    padding: 1.4em;
+    box-sizing: border-box;
+    display: none;
+}
+
+#locations-panel-details .back-button {
+    font-size: 1em;
+    font-weight: 500;
+    color: #7e7efd;
+    display: block;
+    text-decoration: none;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+    font-family: inherit;
+}
+
+#locations-panel-details .back-button .icon {
+    width: 20px;
+    height: 20px;
+    vertical-align: bottom;
+    /* Match link color #7e7efd */
+    filter: invert(65%) sepia(87%) saturate(4695%) hue-rotate(217deg) brightness(105%) contrast(98%);
+}
+
+#locations-panel-details>header {
+    text-align: center;
+}
+
+#locations-panel-details .banner {
+    margin-top: 1em;
+}
+
+#locations-panel-details h2 {
+    font-size: 1.1em;
+    font-weight: 500;
+    margin-bottom: 0.3em;
+}
+
+#locations-panel-details .distance {
+    font-size: 0.9em;
+    text-align: center;
+}
+
+#locations-panel-details .address {
+    text-align: center;
+    font-size: 0.9em;
+    margin-top: 1.3em;
+}
+
+#locations-panel-details .atmosphere {
+    text-align: center;
+    font-size: 0.9em;
+    margin: 0.8em 0;
+}
+
+#locations-panel-details .star-rating-numeric {
+    color: #555;
+}
+
+#locations-panel-details .star-icon {
+    width: 1.2em;
+    height: 1.2em;
+    margin-right: -0.3em;
+    margin-top: -0.08em;
+    vertical-align: top;
+    filter: invert(88%) sepia(60%) saturate(2073%) hue-rotate(318deg) brightness(93%) contrast(104%);
+}
+
+#locations-panel-details .star-icon:last-of-type {
+    margin-right: 0.2em;
+}
+
+#locations-panel-details .price-dollars {
+    color: #555;
+}
+
+#locations-panel-details hr {
+    height: 1px;
+    color: rgba(0, 0, 0, 0.12);
+    background-color: rgba(0, 0, 0, 0.12);
+    border: none;
+    margin-bottom: 1em;
+}
+
+#locations-panel-details .contact {
+    font-size: 0.9em;
+    margin: 0.8em 0;
+    display: flex;
+    align-items: center;
+}
+
+#locations-panel-details .contact .icon {
+    flex: 0 0 auto;
+    width: 1.5em;
+    height: 1.5em;
+}
+
+#locations-panel-details .contact .right {
+    padding: 0.1em 0 0 1em;
+}
+
+#locations-panel-details a {
+    text-decoration: none;
+    color: #7e7efd;
+}
+
+#locations-panel-details .hours .weekday {
+    display: inline-block;
+    width: 5em;
+}
+
+#locations-panel-details .website a {
+    white-space: nowrap;
+    display: inline-block;
+    overflow: hidden;
+    max-width: 16em;
+    text-overflow: ellipsis;
+}
+
+#locations-panel-details p.attribution {
+    color: #777;
+    margin: 0;
+    font-size: 0.8em;
+    font-style: italic;
+}
+
+.mapresult {
+    height: 80px;
+    width: 120px;
+    box-shadow: 2px, 2px, 4px, gray;
+    position: absolute;
+    top: 200px;
+    left: 10px;
+}

@@ -1,0 +1,130 @@
+<style>
+#map {
+  height: 600px;
+  width: 600px;
+}
+</style>
+
+<script>
+let map
+let url 
+
+const display = document.getElementById('display')
+const display2 = document.getElementById('display2')
+const btn = document.getElementById("btn")
+btn.setAttribute("disabled", true);
+
+function initMap(){
+  geocoder = new google.maps.Geocoder();
+
+  map = new google.maps.Map(document.getElementById('map'), {
+    center: {lat: 35.8263, lng: 139.7053},
+    zoom: 12,
+    disableDefaultUI: true,
+    zoomControl: true,
+    clickableIcons: false,
+  })  
+  
+
+  map.addListener('click', function(e) {
+
+    display2.style.color = "royalblue";
+    display2.innerHTML = "この場所でメモリーを作成";
+    
+    document.getElementById('spot_address').value = e.latLng.lat() + ',' + e.latLng.lng();
+    
+    btn.removeAttribute("disabled");
+
+    var marker = new google.maps.Marker({
+      position: e.latLng,
+      map: map,
+      icon: {
+        url: "https://maps.google.com/mapfiles/ms/micons/blue-dot.png",
+        scaledSize: new google.maps.Size(40, 40)
+      },
+      animation: google.maps.Animation.DROP
+    })
+  
+    var infoWindow = new google.maps.InfoWindow({
+      position: e.latLng,
+      content: "この場所でメモリーを作成する場合は<br>左の [ここで作成] ボタンを押してください",
+      title: e.latLng.toString(),
+      disableAutoPan: false,
+      animation: google.maps.Animation.DROP
+    })
+    infoWindow.open(map, marker);
+    
+    map.addListener('click', function (m) {
+      marker.setMap(null);
+      display2.innerHTML = "このスポットでメモリーを作成";
+      display2.style.color = "royalblue";
+    })
+
+//    infoWindow.addListener('click', function(e){
+//      var req = new XMLHttpRequest();
+//      req.onreadystatechange = function() {
+//        var result = document.getElementById('result');
+//          if (req.readyState == 4) { // 通信の完了時
+//            if (req.status == 200) { // 通信の成功時
+//              result.innerHTML = req.responseText;
+//            }
+//          }else{
+//            result.innerHTML = "通信中...";
+//          }
+//      }
+//    )};
+
+//      $.ajax({
+//      url: "memories/new",
+//      type: "GET",
+//      data: {content : $(e.latLng)},
+//      datatype: "html",
+//      success: function(data){
+//        marker.setMap(null);
+//      },
+//      error: function(data){
+//        flash[:danger] = "メモリーの作成ができません"
+//      }
+//    });
+
+//      $.ajax({
+//      url: "spots/create",
+//      type: "POST",
+//      data: {content : $(e.latLng).val()},
+//      datatype: "html",
+//      success: function(data){
+//        marker.setMap(null);
+//      },
+//      error: function(data){
+//        flash[:danger] = "メモリーの作成ができません"
+//      }
+//    });
+  });
+
+  
+
+}
+
+let geocoder
+
+function codeAddress(){
+  let inputAddress = document.getElementById('spot_address').value;
+
+  geocoder.geocode( { 'spot_address': inputAddress}, function(results, status) {
+    if (status == 'OK') {
+      $.ajax({
+        url: "/spots",
+        type: "POST",
+        data: {spot_address: e.latLng},
+        datatype: "html"
+      })
+      display2.innerHTML = "スポットを登録";
+    } else {
+      alert('該当する結果がありませんでした：' + status);
+    }
+  });   
+}
+
+
+</script>
+<script src="https://maps.googleapis.com/maps/api/js?key=<%= Rails.application.credentials.google_map_api_key %>&callback=initMap" async defer></script>

@@ -1,0 +1,44 @@
+<div class="smaller-container">
+  <h2 class="user-new">ユーザーログイン</h2>
+  <div class="login-form">
+
+    <%= form_with scope: :session, url: login_path, local: true do |f| %>
+
+      <%= f.label "メールアドレス", class: "form-label" %>
+      <%= f.email_field :email, class: "form form-control" %>
+
+      <%= f.label "パスワード", class: "form-label" %>
+      <%= f.password_field :password, class: "form form-control" %>
+
+      <%= f.submit "ログイン", class: "btn btn-primary right", id: "user_btn" %>
+    <% end %>
+
+  </div>
+  <p class="pad-top">ユーザー登録がお済みでない方は<%= link_to "こちら", new_user_path %></p>
+</div>
+
+<script>
+const btn = document.getElementById('user-btn');
+const input2 = document.getElementById('user_email');
+const input3 = document.getElementById('user_password');
+
+window.addEventListener('DOMContentLoaded',function(){
+  btn.disabled = true;
+  input1.addEventListener('keyup',function(){
+    if (this.value.length < 1) {
+      btn.disabled = true;
+    } 
+    else {
+      input2.addEventListener('keyup', function(){
+        if (this.value.length < 1) {
+          btn.disabled = true;
+        }
+        else {
+          btn.disabled = false;
+        }
+      })
+    }
+  },false);
+},false);
+
+</script>

@@ -1,0 +1,43 @@
+<header>
+  <%= link_to "Spot Memory Storing", root_path, class: "header-title" %>
+
+  <ul class="header-list">
+    <% if @current_user %>
+      <li>
+        <% if request.path == user_path(@current_user) %>
+          <div class="header-link disable header-link-selected">
+            <%=@current_user.name %>
+          </div>
+        <% else %>
+          <%= link_to image_tag("/user_image/#{@current_user.image_name}.jpg", alt: "ユーザーイメージ", class: "user-image-link") + "#{@current_user.name}", user_path(@current_user), class: "header-link" %>
+        <% end %>
+      </li>
+      <li>
+        <% if (request.path == new_memory_path) || (request.path == new_spot_path) %>
+          <div class="header-link disable header-link-selected">メモリー作成</div>
+        <% else %>
+          <%= link_to "メモリー作成", new_spot_path, class: "header-link", id: "new_memory_link" %>
+        <% end %>
+      </li>
+      <li>
+        <%= link_to "ログアウト", logout_path, method: :post, class: "header-link", data: { confirm: 'ログアウトしてもよろしいですか？' } %>
+      </li>
+    <% else %>
+      <li>
+        <% if request.path == login_path %>
+          <div class="header-link disable header-link-selected">
+            ログイン
+          </div>
+        <% else %>
+          <%= link_to "ログイン", login_path, class: "header-link" %>
+        <% end %>
+      </li>
+    <% end %>
+  </ul>
+
+</header>
+
+<script>
+  
+
+</script>

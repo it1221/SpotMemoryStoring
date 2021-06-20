@@ -1,0 +1,39 @@
+<div class="smaller-container">  
+  <h2 class="user-new">ユーザー登録</h2>
+  <%= render "form" %>
+</div>
+
+<script>
+const btn = document.getElementById('user-btn');
+const input1 = document.getElementById('user_name');
+const input2 = document.getElementById('user_email');
+const input3 = document.getElementById('user_password');
+
+window.addEventListener('DOMContentLoaded',function(){
+  btn.setAttribute("disabled", true);
+  input1.addEventListener('keyup',function(){
+    if (this.value.length < 1) {
+      btn.disabled = true;
+    } 
+    else {
+      input2.addEventListener('keyup', function(){
+        if (this.value.length < 1) {
+          btn.disabled = true;
+        }
+        else {
+          input3.addEventListener('keyup', function(){
+            if (this.value.length < 1) {
+              btn.disabled = true;
+            }
+            else {
+              btn.disabled = false;
+            }
+          })
+        }
+      })
+    }
+  })
+
+},false);
+
+</script>

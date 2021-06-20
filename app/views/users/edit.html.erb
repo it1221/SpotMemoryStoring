@@ -1,0 +1,34 @@
+<div class="smaller-container">
+  <h2>ユーザー情報編集</h2>
+
+  <% unless @user.errors.full_messages.nil? %>
+    <% @user.errors.full_messages.each do |msg| %>
+      <div class="alert-danger">  * <%= msg %> <br> </div>
+    <% end %>
+  <% end %>
+
+  <div class="form-group">
+    <%= form_with model: @current_user, multi_part: true, local: true do |f| %>
+      <div class="form-group row">
+        <%= f.label :image_name, class: "form-label" %>
+        <%= f.file_field :image_name %>
+      </div>
+      <div class="form-group row">
+        <%= f.label :name, class: "form-label" %>
+        <%= f.text_field :name, class: "form form-control" %>
+      </div>
+      <div class="form-group row text-area">
+        <%= f.label :introduction, class: "form-label" %>
+        <%= f.text_area :introduction, class: "form form-control text-area" %>
+      </div>
+      <div class="form-group">
+        <%= f.label "パスワード（プロフィール再設定用）", class: "form-label" %>
+        <%= f.password_field :password, class: "form form-control" %>
+      </div>
+      
+
+      <%= f.submit "更新", class: "btn", id: "user_btn" %>
+
+    <% end %>
+  </div>
+</div>

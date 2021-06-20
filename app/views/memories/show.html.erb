@@ -1,0 +1,10 @@
+<div class="memory-show">
+  <div class="memory-about">
+    <h3 class="memory-title"><%= @memory.title %></h3>
+    <h4><%= simple_format(@memory.content) %></h4>
+    <div class="memory-time">
+      <p><%= @memory.created_at.strftime(@time_format) %> </p>
+    </div>
+  </div>
+
+</div>

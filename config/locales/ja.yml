@@ -1,0 +1,28 @@
+ja:
+  activerecord:
+    models:
+      user:
+      spot:
+      memory:
+    errors:
+      messages:
+        record_invalid: 'バリデーションに失敗しました: %{errors}'
+    attributes:
+      user:
+        name: ユーザー名
+        email: メールアドレス
+        image_name: プロフィール画像
+        introduction: プロフィール欄
+        password: パスワード
+        password_confirmation: パスワード（確認用）
+      spot:
+        name: 場所名
+        address: 地点
+      memory:
+        title: タイトル
+        content: 内容
+  time:
+    format:
+      am: 午前
+      pm: 午後
+        
