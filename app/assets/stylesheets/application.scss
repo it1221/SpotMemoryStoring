@@ -25,9 +25,8 @@ body {
     padding-top: 32px;
     clear: both;
     border: border-box;
-    background-image: url("/assets/images/background.jpg");
-    background-repeat: repeat;
-    border-image-outset: 1em;
+    background-image: url("/assets/images/back_ground.jpg");
+    background-size: auto;
 }
 
 h1 {
@@ -66,6 +65,8 @@ h1 {
     }
     .top-p {
         color: white;
+        opacity: 0.8;
+        letter-spacing: 4px;
         margin-top: 2em;
         font-size: 20px;
         font-family: Cochin;
@@ -183,6 +184,21 @@ header {
 .header-link-selected {
     box-shadow: 4px 4px 4px rgb(22, 99, 199) inset;
     color: #b2c9ee;
+    height: 62px;
+    width: 7em;
+    line-height: 62px;
+    font-size: large;
+    font-weight: bold;
+    font-family: 'Courier New';
+    display: block;
+    float: left;
+    border: rgb(86, 146, 236) 2px solid;
+    text-align: center;
+    transition: all 0.3s;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    padding: 0 3px 3px 3px;
 }
 
 .header-link:hover {

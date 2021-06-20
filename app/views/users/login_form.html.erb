@@ -4,10 +4,10 @@
 
     <%= form_with scope: :session, url: login_path, local: true do |f| %>
 
-      <%= f.label "メールアドレス", class: "form-label" %>
+      <%= f.label "メールアドレス", class: "form-label h4" %>
       <%= f.email_field :email, class: "form form-control" %>
 
-      <%= f.label "パスワード", class: "form-label" %>
+      <%= f.label "パスワード", class: "form-label h4" %>
       <%= f.password_field :password, class: "form form-control" %>
 
       <%= f.submit "ログイン", class: "btn btn-primary right", id: "user_btn" %>
@@ -23,18 +23,18 @@ const input2 = document.getElementById('user_email');
 const input3 = document.getElementById('user_password');
 
 window.addEventListener('DOMContentLoaded',function(){
-  btn.disabled = true;
+  btn.setAttribute("disabled", true);
   input1.addEventListener('keyup',function(){
     if (this.value.length < 1) {
-      btn.disabled = true;
+      btn.setAttribute("disabled", true);
     } 
     else {
       input2.addEventListener('keyup', function(){
         if (this.value.length < 1) {
-          btn.disabled = true;
+          btn.setAttribute("disabled", true);
         }
         else {
-          btn.disabled = false;
+          btn.setAttribute("disabled", false);
         }
       })
     }

@@ -5,7 +5,7 @@
     <% if @current_user %>
       <li>
         <% if request.path == user_path(@current_user) %>
-          <div class="header-link disable header-link-selected">
+          <div class="disable header-link-selected">
             <%=@current_user.name %>
           </div>
         <% else %>
@@ -14,7 +14,7 @@
       </li>
       <li>
         <% if (request.path == new_memory_path) || (request.path == new_spot_path) %>
-          <div class="header-link disable header-link-selected">メモリー作成</div>
+          <div class="disable header-link-selected">メモリー作成</div>
         <% else %>
           <%= link_to "メモリー作成", new_spot_path, class: "header-link", id: "new_memory_link" %>
         <% end %>
@@ -25,7 +25,7 @@
     <% else %>
       <li>
         <% if request.path == login_path %>
-          <div class="header-link disable header-link-selected">
+          <div class="disable header-link-selected">
             ログイン
           </div>
         <% else %>
