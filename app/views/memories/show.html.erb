@@ -1,10 +1,15 @@
 <div class="memory-show">
+
   <div class="memory-about">
     <h3 class="memory-title"><%= @memory.title %></h3>
+    <h4>@<%= @memory.get_spot_name %></h4>
+    <br>
     <h4><%= simple_format(@memory.content) %></h4>
+    <h5 class="memory-private"><%= @memory.private == true ? "非公開設定中" : "公開中" %></h5>
     <div class="memory-time">
-      <p><%= @memory.created_at.strftime(@time_format) %> </p>
+      <p><%= @memory.created_at.strftime(@time_format) %></p>
     </div>
   </div>
 
 </div>
+<a class="h4" href="/users/<%= @user.id %>">作成したメモリー一覧へ</a>

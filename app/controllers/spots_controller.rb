@@ -14,10 +14,14 @@ class SpotsController < ApplicationController
   end
 
   def create
-    @spot = Spot.new(spot_params)
+    user = User.find_by(id: @current_user.id)
+    @spot = @current_user.spots.build(spot_params)
+    @spot.name = "スポット#{user.spots.length + 1 }" if @spot.name.blank?
     if @spot.save
-      redirect_to new_memory_path
       flash[:info] = "場所を決定しました"
+      session[:spot_name] = @spot.name
+      session[:spot_id] = @spot.id
+      redirect_to new_memory_url
     else
       flash[:notice]
       render new_spot_path

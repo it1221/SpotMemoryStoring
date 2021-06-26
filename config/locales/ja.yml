@@ -1,9 +1,9 @@
 ja:
   activerecord:
     models:
-      user:
-      spot:
-      memory:
+      user: ユーザー名
+      spot: スポット
+      memory: メモリー
     errors:
       messages:
         record_invalid: 'バリデーションに失敗しました: %{errors}'
@@ -21,6 +21,7 @@ ja:
       memory:
         title: タイトル
         content: 内容
+        private: 非公開設定
   time:
     format:
       am: 午前

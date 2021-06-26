@@ -1,5 +1,6 @@
 class ApplicationController < ActionController::Base
   before_action :set_current_user
+  before_action :set_current_spot
   
 
     def set_current_user
@@ -7,6 +8,14 @@ class ApplicationController < ActionController::Base
         @current_user = User.find_by(id: session[:user_id])
       else
         @current_user = nil
+      end
+    end
+    
+    def set_current_spot
+      if session[:spot_id]
+        @current_spot = Spot.find_by(id: session[:spot_id])
+      else
+        @current_spot = nil
       end
     end
 

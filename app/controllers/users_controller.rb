@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  before_action :logged_in?, only: [:index, :create, :edit, :destory]
+  before_action :logged_in?, only: [:index, :edit, :destory]
   before_action :authenticate_user?, only: [:edit, :update, :destroy]
 
   def index
@@ -8,7 +8,7 @@ class UsersController < ApplicationController
 
   def show 
     @user = User.find_by(id: params[:id])
-    
+    @time_format = "#{"%P" == "am" ? "午前" : "午後"}%l:%M - %Y年%-m月%-d日"
   end
 
   def new 
@@ -20,7 +20,7 @@ class UsersController < ApplicationController
     if @user.save
       flash[:success] = "ユーザー登録が完了しました。"
       session[:user_id] = @user.id
-      redirect_to "user"
+      redirect_to @user
     else
       flash[:danger] = "ユーザー登録に失敗しました"
       render "new"

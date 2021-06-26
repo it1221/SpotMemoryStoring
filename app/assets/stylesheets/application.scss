@@ -41,6 +41,35 @@ h1 {
     pointer-events: none;
 }
 
+.animation {
+    transition: all 0.2s;
+}
+
+.btn {
+    margin: 1em 0;
+}
+
+.pad-top {
+    padding-top: 2em;
+}
+
+.container {
+    background-color: #f6f6ff;
+    box-shadow: 4px 4px 6px -2px gray;
+    height: 140em;
+    width: 80%;
+    padding: 2em 4em;
+    position: relative;
+}
+
+.smaller-container {
+    width: 80%;
+    margin: 0 auto;
+}
+
+
+/*---------------- トップページ -------------------*/
+
 #top {
     height: 800px;
     width: 100%;
@@ -96,29 +125,8 @@ h1 {
     margin: 2em 0 5em 0;
 }
 
-header a {
-    text-decoration: none;
-}
 
-header a:hover {
-    text-decoration: none;
-}
-
-.animation {
-    transition: all 0.2s;
-}
-
-.btn {
-    margin: 1em 0;
-}
-
-.form-label {
-    margin-top: 1em;
-}
-
-.pad-top {
-    padding-top: 2em;
-}
+/*----------------- ヘッダー -------------------*/
 
 header {
     width: 100%;
@@ -148,6 +156,14 @@ header {
     color: white;
 }
 
+header a {
+    text-decoration: none;
+}
+
+header a:hover {
+    text-decoration: none;
+}
+
 .header-list {
     list-style: none;
     margin-left: 75%;
@@ -161,7 +177,6 @@ header {
     color: white;
     font-size: large;
     font-weight: bold;
-    font-family: 'Courier New';
     display: block;
     float: left;
     border: rgb(86, 146, 236) 2px solid;
@@ -207,23 +222,6 @@ header {
     color: white;
 }
 
-.form-control {
-    height: 2em;
-}
-
-.container {
-    background-color: #f6f6ff;
-    box-shadow: 4px 4px 6px -2px gray;
-    height: 140em;
-    width: 80%;
-    position: relative;
-}
-
-.smaller-container {
-    width: 80%;
-    margin: 0 auto;
-}
-
 .user-image {
     height: 6em;
     width: 6em;
@@ -231,6 +229,9 @@ header {
     margin-top: 1em;
     object-fit: cover;
 }
+
+
+/*-------------- ユーザー作成・その他フォーム ----------------*/
 
 .user-new {
     padding-bottom: 10px;
@@ -246,6 +247,14 @@ header {
     margin: 1em 0;
 }
 
+.form-control {
+    height: 2em;
+}
+
+.form-label {
+    margin-top: 1em;
+}
+
 .form {
     border: #aaa 1px solid;
     height: 2.5em;
@@ -259,8 +268,78 @@ header {
     height: 7em;
 }
 
+
+/*--------------- ユーザー詳細 ----------------*/
+
+#user-show-page {
+    display: flex;
+}
+
+.user-info {
+    width: 30%;
+}
+
+.user-memories {
+    width: 70%;
+    padding: 0 2em;
+}
+
+.user-memory {
+    width: 100%;
+    box-shadow: 4px 4px 3px -2px gray;
+    padding: 1em;
+    margin-bottom: 1em;
+    background-color: white;
+}
+
+
+/*---------------- スポット作成 -----------------*/
+
 .memory-spot {
-    font-family: 'Courier New';
+    height: 10em;
+    clear: left;
+}
+
+.spot-new {
+    height: 25em;
+    display: flex;
+    margin-top: 11em;
+}
+
+.spot-new-form {
+    height: 20em;
+    width: 50%;
+}
+
+.spot-new-map {
+    height: 20em;
+    width: 50%;
+    margin: 0 auto;
+}
+
+.spot-selected {
+    position: absolute;
+    top: 9em;
+    left: 3em;
+    z-index: 6;
+}
+
+
+/*---------------- メモリー作成 -----------------*/
+
+#new-memory {
+    height: 6em;
+}
+
+.memory-new {
+    height: 30em;
+}
+
+
+/*--------------- メモリー詳細 -------------------*/
+
+.memory-spot {
+    position: absolute;
 }
 
 .memory-show {
@@ -274,6 +353,16 @@ header {
     position: relative;
 }
 
+.memory-title {
+    border-bottom: #aaa 1px solid;
+    padding-bottom: 9px;
+}
+
+#me-btn {
+    text-align: center;
+    margin-left: 30em;
+}
+
 .memory-about {
     padding: 1em 1.5em;
 }
@@ -284,10 +373,18 @@ header {
     right: 2em;
 }
 
+.memory-private {
+    position: absolute;
+    bottom: 1em;
+}
+
+
+/*------------------ フッター ---------------------*/
+
 footer {
     height: 20em;
     width: auto;
-    background-color: #0f0f66;
+    background-color: royalblue;
     padding-bottom: 4em;
 }
 
@@ -295,20 +392,8 @@ footer {
     margin: 2em 2em 0 0;
 }
 
-#memory_title {
-    height: 4em;
-}
 
-.memory-title {
-    border-bottom: #aaa 1px solid;
-    padding-bottom: 3px;
-    margin-bottom: 1em;
-}
-
-#me-btn {
-    text-align: center;
-    margin-left: 30em;
-}
+/*----------------- マップ --------------------*/
 
 #map-container {
     width: 100%;
@@ -332,8 +417,8 @@ footer {
     position: absolute;
     height: 600px;
     width: 600px;
-    left: 33%;
-    top: 7%;
+    left: 40%;
+    top: 10%;
     right: 0;
     bottom: 0;
 }
