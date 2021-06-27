@@ -1,0 +1,16 @@
+<div class="user-show-memory">
+  <h2 class="user-show-sub"><% if @user == @current_user %>マイ<% end %>メモリー</h2>
+  <% if @memories.length > 0 %>
+    <% @memories.each do |memory| %>
+      <a class="user-show-content" href="/memories/<%= memory.id %>">
+        <h4><%= memory.title %></h4>        
+        <h5>＠<%= memory.get_spot_name %></h5>
+        <p class="index-created"><%= memory.get_created_at %></p>
+        <p class="index-private gray"><%= memory.get_private %></p>
+      </a>   
+    <% end %>
+    <%= paginate @memories %>
+  <% else %>
+    <h4>公開されているメモリーはありません</h4>
+  <% end %>
+</div>

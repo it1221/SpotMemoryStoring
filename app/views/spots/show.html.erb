@@ -1,0 +1,72 @@
+<h2><%= @spot.name %></h2>
+<h4>作成日 <%= @spot.get_created_at %></h4>
+<hr>
+<div class="spot-memories">
+  <% @spot.memories.each do |m| %>
+    <a href="/memories/<%= m.id %>" class="h4">
+      <div class="spot-memory">
+        <h3><%= m.title %></h3>
+        <h5><%= m.get_created_at %></h5>
+      </div>
+    </a>  
+  <% end %>
+</div>
+<% if @current_user.id == @spot.user_id %>
+  <%= link_to "このスポットで新たにメモリーを作成", new_memory_path %>
+  <br>
+  <%= link_to "スポット編集", edit_spot_path %>
+<% end %>
+
+<%= render 'layouts/maps' %>
+
+<script>
+let map
+let url
+
+const display = document.getElementById('display')
+const display2 = document.getElementById('display2')
+const btn = document.getElementById("btn")
+const memo_length = gon.memo_length
+const memo_lat = gon.memo_lat
+const memo_lng = gon.memo_lng
+const spot_name = gon.spot_name
+    //btn.setAttribute("disabled", true);
+
+
+function initMap() {
+    geocoder = new google.maps.Geocoder();
+
+    map = new google.maps.Map(document.getElementById('map'), {
+        center: { lat: memo_lat, lng: memo_lng },
+        zoom: 12,
+        disableDefaultUI: true,
+        zoomControl: true,
+    })
+
+    marker = new google.maps.Marker({
+            position: { lat: memo_lat, lng: memo_lng },
+            map: map,
+            icon: {
+                url: "https://maps.google.com/mapfiles/ms/micons/blue-dot.png",
+                scaledSize: new google.maps.Size(45, 40)
+            },  
+        })
+
+
+    map.addListener('click', function(e) {
+
+        var infoWindow = new google.maps.InfoWindow({
+            position: e.latLng,
+            content: spot_name,
+            title: e.latLng.toString(),
+            disableAutoPan: false,
+            animation: google.maps.Animation.DROP
+        })
+        infoWindow.open(map, marker);
+
+    
+
+    });
+
+}
+</script>

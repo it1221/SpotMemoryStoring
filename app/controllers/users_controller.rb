@@ -1,14 +1,24 @@
 class UsersController < ApplicationController
-  before_action :logged_in?, only: [:index, :edit, :destory]
+  before_action :logged_in?, only: [:index, :show, :edit, :update, :destory]
   before_action :authenticate_user?, only: [:edit, :update, :destroy]
+  before_action :reset_user_show_session, only: [:index, :new, :login, :edit, :logout]
 
   def index
-    @users = User.all 
+    @users = User.paginate(page: params[:page]).includes(:spot, :memory)
   end
 
   def show 
     @user = User.find_by(id: params[:id])
-    @time_format = "#{"%P" == "am" ? "午前" : "午後"}%l:%M - %Y年%-m月%-d日"
+    session[:show_user_id] = @user.id
+    @show_flag = session[:user_show]
+    @count = 0
+    if @user == @current_user
+      @memories = Memory.page(params[:page]).where(user_id: @user.id).per(10)
+      @spots = Spot.page(params[:page]).where(user_id: @user.id).per(10)
+    else
+      @memories = Memory.page(params[:page]).where(user_id: @user.id).where(private: false).per(10)
+      @spots = Spot.page(params[:page]).where(user_id: @user.id).per(10)
+    end
   end
 
   def new 

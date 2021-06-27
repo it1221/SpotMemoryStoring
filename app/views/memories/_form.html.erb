@@ -1,0 +1,69 @@
+  <% unless @memory.errors.full_messages.nil? %>
+    <% @memory.errors.full_messages.each do |msg| %>
+      <div class="alert-danger">  * <%= msg %> <br> </div>
+    <% end %>
+  <% end %>
+
+<div class="memory-new">
+  <%= form_with(model: @memory, local: true) do |f| %>
+  <div class="memory-new">  
+    <div class="form-group row">
+        <%= f.label :title, class: "col-sm-2 h4" %>
+        <%= f.text_field :title, class: "form col-sm-8", placeholder: "(例) 箱根旅行、海にまつわる英単語 など" %>
+    </div>
+    <div class="form-group row">  
+      <%= f.label :content, class: "col-sm-2 h4" %>
+      <%= f.text_area :content, class: "form col-sm-8 text-area" %>
+    </div>
+    <br><br>
+    <h4 class="col-sm-1">公開設定</h4><br><br>
+    <div class="form-group row private-select">
+      <%= f.label "非公開", class: "col-sm-1 h5"%>
+      <%= f.radio_button :private, true, class: "radio-btn" %>
+    </div>
+    <div class="form-group row private-select">
+      <%= f.label "公開", class: "col-sm-1 h5"%>
+      <%= f.radio_button :private, false, class: "radio-btn" %>
+    </div>
+    <hr>
+    <div class="form-group row">
+      <%= f.submit yield(:btnvalue), class: "btn btn-primary col-sm-3 mb-2", id: "me-btn" %>
+    </div>
+  </div>
+  <% end %>
+</div>
+
+<script>
+const btn = document.getElementById('me-btn');
+const input1 = document.getElementById('memory_title');
+const input2 = document.getElementById('memory_content');
+
+
+
+window.addEventListener('DOMContentLoaded',function(){
+  //btn.setAttribute("disabled", true);
+  
+  input1.addEventListener('keyup',function(){
+    if (this.value.length < 1) {
+      //btn.setAttribute("disabled", true);
+    } 
+    else {
+      input2.addEventListener('keyup', function(){
+        if (this.value.length < 1) {
+          //btn.setAttribute("disabled", true);
+        }
+        else {
+          //btn.setAttribute("disabled", false);
+          btn.classList.add('btn-primary');
+        }
+      })
+    }
+  },false);
+  input2.addEventListener('change',function(){
+    if (this.value.length < 1) {
+      //btn.setAttribute("disabled", true);
+    }
+  },false);
+},false);
+
+</script>

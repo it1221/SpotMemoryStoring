@@ -16,12 +16,19 @@ ja:
         password: パスワード
         password_confirmation: パスワード（確認用）
       spot:
-        name: 場所名
+        name: スポット名
         address: 地点
       memory:
         title: タイトル
         content: 内容
-        private: 非公開設定
+        private: 非公開にする
+  views:
+    pagination:
+      first: 最初
+      last: 最後
+      previous: 前
+      next: 次
+      truncate: ...
   time:
     format:
       am: 午前

@@ -24,6 +24,10 @@ gem 'jbuilder', '~> 2.7'
 gem 'bcrypt', '~> 3.1.7'
 gem 'dotenv-rails'
 gem 'rails-i18n'
+gem 'gon'
+gem 'will_paginate'
+gem 'bootstrap-will_paginate'
+gem 'kaminari'
 
 
 # Use Active Storage variant

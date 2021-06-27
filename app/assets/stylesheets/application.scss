@@ -33,8 +33,20 @@ h1 {
     font-family: 'Arial Narrow';
 }
 
+a {
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: none;
+}
+
 .alert {
     margin-top: 1em;
+}
+
+.gray {
+    color: gray;
 }
 
 .disabled {
@@ -58,7 +70,7 @@ h1 {
     box-shadow: 4px 4px 6px -2px gray;
     height: 140em;
     width: 80%;
-    padding: 2em 4em;
+    padding: 2em 1em;
     position: relative;
 }
 
@@ -204,7 +216,6 @@ header a:hover {
     line-height: 62px;
     font-size: large;
     font-weight: bold;
-    font-family: 'Courier New';
     display: block;
     float: left;
     border: rgb(86, 146, 236) 2px solid;
@@ -220,14 +231,6 @@ header a:hover {
     box-shadow: 5px 5px 4px rgb(22, 99, 199) inset;
     text-shadow: 4px 4px rgb(22, 99, 199);
     color: white;
-}
-
-.user-image {
-    height: 6em;
-    width: 6em;
-    border-radius: 6em;
-    margin-top: 1em;
-    object-fit: cover;
 }
 
 
@@ -279,17 +282,67 @@ header a:hover {
     width: 30%;
 }
 
-.user-memories {
-    width: 70%;
+.user-image {
+    height: 7em;
+    width: 7em;
+    border-radius: 6em;
+    margin-top: 1em;
+    object-fit: cover;
+}
+
+.user-introduction {
+    word-break: break-all;
+}
+
+.index-created {
+    float: left;
+    font-size: 12px;
+}
+
+.index-private {
+    text-align: right;
+    font-size: 12px;
+}
+
+.user-ajax {
+    width: 60%;
+    margin-left: auto;
+    margin-right: 0px;
+    padding: 1em;
+}
+
+.user-show-sub {
+    padding-bottom: 9px;
+    border-bottom: gray 1px solid;
+    margin-bottom: 1em;
+}
+
+.user-show-spots {
     padding: 0 2em;
 }
 
-.user-memory {
-    width: 100%;
+.user-show-content {
+    padding: 5px;
     box-shadow: 4px 4px 3px -2px gray;
-    padding: 1em;
+    padding: 10px 10px 6px 10px;
     margin-bottom: 1em;
     background-color: white;
+    border-radius: 3px;
+    display: block;
+    transition: all 0.3s;
+    color: black;
+}
+
+.user-show-content:hover {
+    opacity: 0.8;
+    text-decoration: none;
+    transform: translate(1px, 1px);
+    box-shadow: none;
+}
+
+.pagination {
+    position: relative;
+    left: 18em;
 }
 
 
@@ -324,6 +377,37 @@ header a:hover {
     z-index: 6;
 }
 
+#display2 {
+    position: absolute;
+    top: 7.5em;
+    left: 3em;
+}
+
+
+/*--------------- スポット詳細 ------------------*/
+
+.spot-memories {
+    width: 40%;
+    margin: 0 0 1em 0;
+}
+
+.spot-memory {
+    width: 90%;
+    padding: 0 7px 7px 7px;
+    background-color: white;
+    border: #eee 1px solid;
+    box-shadow: 4px 4px 4px -2px gray;
+    transition: all 0.3s;
+    border-radius: 3px;
+    margin-bottom: 4px;
+}
+
+.spot-memory:hover {
+    transform: translate(1px, 1px);
+    box-shadow: none;
+    opacity: 0.8;
+}
+
 
 /*---------------- メモリー作成 -----------------*/
 
@@ -333,6 +417,14 @@ header a:hover {
 
 .memory-new {
     height: 30em;
+}
+
+.private-select {
+    display: inline;
+}
+
+.radio-btn {
+    height: 2em;
 }
 
 
@@ -378,6 +470,24 @@ header a:hover {
     bottom: 1em;
 }
 
+.memory-show-user-link {
+    position: absolute;
+    bottom: 3em;
+}
+
+.memory-show-edit-link {
+    position: absolute;
+    bottom: 4em;
+    right: 2em;
+}
+
+.memo-index-link {
+    margin-top: 1em;
+    text-align: right;
+    display: block;
+    color: royalblue;
+}
+
 
 /*------------------ フッター ---------------------*/
 
@@ -418,7 +528,7 @@ footer {
     height: 600px;
     width: 600px;
     left: 40%;
-    top: 10%;
+    top: 8%;
     right: 0;
     bottom: 0;
 }

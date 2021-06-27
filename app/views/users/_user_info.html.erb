@@ -1,0 +1,7 @@
+<div class="user-show">
+  <h2 class="user-show-sub"><% if @user == @current_user %>マイ<% end %>ヒストリー</h2>
+    <div class="user-show-content">
+      <h4>登録スポット数：<%= @current_user.spots.length %></h4>        
+      <h4>登録メモリー数：<%= @current_user.memories.length %></h4>
+    </div>
+</div>

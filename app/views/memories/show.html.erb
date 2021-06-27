@@ -2,14 +2,18 @@
 
   <div class="memory-about">
     <h3 class="memory-title"><%= @memory.title %></h3>
-    <h4>@<%= @memory.get_spot_name %></h4>
+    <a href="/spots/<%= @memory.spot_id %>"><h4>@<%= @memory.get_spot_name %></h4></a>
     <br>
     <h4><%= simple_format(@memory.content) %></h4>
-    <h5 class="memory-private"><%= @memory.private == true ? "非公開設定中" : "公開中" %></h5>
+    <h4 class="memory-show-user-link">By <%= link_to @user.name, @user, class: "h4" %></h4>
+    <% if @current_user.id == @memory.user_id %>
+      <%= link_to "[編集]", edit_memory_path, class: "memory-show-edit-link" %>
+    <% end %>
+    <h5 class="memory-private"><%= @memory.get_private %></h5>
     <div class="memory-time">
-      <p><%= @memory.created_at.strftime(@time_format) %></p>
+      <p><%= @memory.get_created_at %></p>
     </div>
   </div>
 
 </div>
-<a class="h4" href="/users/<%= @user.id %>">作成したメモリー一覧へ</a>
+<%= link_to "作成したメモリー一覧へ", memories_url, class: "h4 blue memo-index-link" %>

@@ -1,25 +1,27 @@
 <div id="user-show-page">  
   <div class="user-info">  
     <img class="user-image" src="<%= "/user_image/#{@user.image_name}.jpg" %>">
-    <h3 class="user-name">
+    <h2 class="user-name">
       <%= @user.name %>
-    </h3>
-    <p class="user-introduction">
+    </h2>
+    <h4 class="user-introduction">
       <%= simple_format(@user.introduction) %>
-    </p>
+    </h4>
     <% if @current_user == @user %>
       <%= link_to "[編集]", edit_user_path %>
+      <br>
     <% end %>
+    <%= link_to "メモリー一覧へ", memories_path %>
+      <br>
+    <%= link_to "スポット一覧へ", spots_path %>
   </div>
-
-  <div class="user-memories">
-    <% @user.memories.each do |memory| %>
-      <div class="user-memory">
-        <a class="black h4" href="/memories/<%= memory.id %>"><%= memory.title %></a>
-        <p><%= memory.content %></p>
-        <p>＠<%= memory.get_spot_name %></p>
-        <p><%= memory.created_at.strftime(@time_format) %></p>
-      </div>
+  <div class="user-ajax">
+    <% if @show_flag == "memory" %>
+      <%= render 'showmemories' %> 
+    <% elsif @show_flag == "spot" %>
+      <%= render 'showspots' %>
+    <% else %>
+      <%= render 'user_info' %>
     <% end %>
   </div>
 </div>

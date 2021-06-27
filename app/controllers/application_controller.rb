@@ -20,7 +20,7 @@ class ApplicationController < ActionController::Base
     end
 
     def logged_in?
-      unless @current_user
+      unless session[:user_id]
         flash[:danger] = "ログインしてください"
         redirect_to login_url
       end
@@ -30,11 +30,13 @@ class ApplicationController < ActionController::Base
       @user = User.find_by(id: params[:id])    
       if @user != @current_user
         flash[:danger] = "権限がありません"
-        redirect_to root_path
+        redirect_to @current_user
       end
     end
 
-    
+    def reset_user_show_session
+      session[:user_show] = nil
+    end
 
 
 end
