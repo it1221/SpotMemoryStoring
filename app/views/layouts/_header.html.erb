@@ -13,7 +13,11 @@
         <% end %>
       </li>
       <li>
-        <%= link_to "友達を探す", users_path, class: "header-link" %>
+        <% if request.path == users_path %>
+          <div class="disable header-link-selected">友達を探す</div>
+        <% else %>
+          <%= link_to "友達を探す", users_path, class: "header-link" %>
+        <% end %>
       </li>
       <li>
         <% if (request.path == new_memory_path) || (request.path == new_spot_path) %>

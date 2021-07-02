@@ -146,6 +146,18 @@ a:hover {
     margin: 2em 0 5em 0;
 }
 
+.btn-info {
+    width: 15em;
+    border-radius: 3px;
+    box-shadow: 0 4px lightgray;
+    transition: all 0.3s;
+}
+
+.btn-info:active {
+    transform: translate(0, 4px);
+    box-shadow: none;
+}
+
 
 /*----------------- ヘッダー -------------------*/
 
@@ -423,6 +435,10 @@ header a:hover {
     border-radius: 6em;
     margin: 1em;
     object-fit: cover;
+}
+
+.search-form {
+    width: 70%;
 }
 
 

@@ -1,30 +1,46 @@
 <div class="search-top">
-  <h2>フレンドを探す<i class="fas fa-search"></i></h2>
+  <h2>友達を探す<i class="fas fa-search"></i></h2>
 </div>
 <div class="search-form">
   <%= form_with url: users_path, method: :get, remote: true do %>
     <div class="form-group row">
-      <%= text_field_tag :name, '', class: "form form-control js-text_filed",remote: true, onchange: 'submit(this.form);' %>
+      <%= text_field_tag :name, '', class: "form form-control js-text_field", placeholder: "検索したいユーザー名を入力してください" %>
     </div>
   <% end %>
 </div>
+<div class="js-users">
+  <% @users.each do |user| %>
+    <div class="js-user"><%= render user %></div>
+  <% end %>
+</div>
 
-<%= render @users %>
 
 <script>
-  //$('h2').css('color', '#fff');
-  $(function(){
-    $('.js-text_field').on('keyup', function(){
-      var title = $.trim($(this).val());
 
-      $.ajax({
-        type: 'GET', // リクエストのタイプ
-        url: '/users', // リクエストを送信するURL
-        data:  { name: title }, // サーバーに送信するデータ
-        dataType: 'json' // サーバーから返却される型
-      })
+    $(function(){
+      $('.js-text_field').on('keyup', function(){
+        var title = $.trim($(this).val());
+
+        $.ajax({
+          type: 'GET', // リクエストのタイプ
+          url: '/users/searches', // リクエストを送信するURL
+          data:  { name: title }, // サーバーに送信するデータ
+          dataType: 'json' // サーバーから返却される型
+        })
+
+        .done(function (data) {
+          $('.js-users .js-user').remove();
+
+          $(data).each(function(i, user) {
+            $('.js-users').append(
+              `<a href="/messages/${user.id}" class="user-show-content js-user"><img src="/user_image/${user.image_name}.jpg" 
+              class="user-image-index float-left", alt="User Image"><h3>${user.name}</h3></a>`
+            );
+          });
+        })
+      });
     });
-  });
+
 
 
 </script>

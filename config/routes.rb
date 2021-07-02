@@ -1,4 +1,7 @@
 Rails.application.routes.draw do
+  namespace :users do 
+    resources :searches, only: :index, defaults: { format: :json }
+  end
   get 'static_pages/home'
   get 'static_pages/about'
   root to: 'static_pages#home'
