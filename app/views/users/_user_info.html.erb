@@ -1,7 +1,15 @@
 <div class="user-show">
   <h2 class="user-show-sub"><% if @user == @current_user %>マイ<% end %>ヒストリー</h2>
-    <div class="user-show-content">
-      <h4>登録スポット数：<%= @current_user.spots.length %></h4>        
-      <h4>登録メモリー数：<%= @current_user.memories.length %></h4>
+    <div class="user-show-info">
+      <h4><%= @user == @current_user ? "登録" : "公開" %>スポット数：<%= @spot_amount %></h4>
+      <% if @user == @current_user %>  
+        <p class="private-true">非公開：<%= @private_s_amount %></p>
+        <p class="private-false">公開：<%= @public_s_amount %></p>       
+      <% end %>
+      <h4><%= @user == @current_user ? "登録" : "公開" %>メモリー数：<%= @memory_amount %></h4>
+      <% if @user == @current_user %>
+        <p class="private-true">非公開：<%= @private_m_amount %></p>
+        <p class="private-false">公開：<%= @public_m_amount %></p>
+      <% end %>
     </div>
 </div>

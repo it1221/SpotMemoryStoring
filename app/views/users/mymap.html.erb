@@ -1,0 +1,58 @@
+<h2 class="mymap-head">マイマップ<span>< <%= @user.name %> ></span></h2>
+<div id="mymap" class="embed-responsive"></div>
+
+<script>
+let map
+let url
+s_latlng = []
+s_name = []
+s_id = []
+s_latlng = gon.s_latlng
+s_name = gon.s_name
+s_id = gon.s_id
+marker = []
+infoWindow = []
+
+
+function initMap() {
+  geocoder = new google.maps.Geocoder();
+  map = new google.maps.Map(document.getElementById('mymap'), {
+    center: s_latlng[0],
+    zoom: 10,
+    disableDefaultUI: true,
+    zoomControl: true,
+  });
+  for ( i = 0; i < s_latlng.length; i++) {        
+    marker[i] = new google.maps.Marker({
+      position: s_latlng[i],
+      map: map,
+      icon: {
+      url: "https://maps.google.com/mapfiles/ms/micons/blue-dot.png",
+      scaledSize: new google.maps.Size(45, 40)
+      },
+      animation: google.maps.Animation.DROP
+    });
+
+    infoWindow[i] = new google.maps.InfoWindow({ // 吹き出しの追加
+      content: '<h5>' + s_name[i] + '</h5> <a name="スポット詳細へ" href="/spots/' + s_id[i] + '">詳細へ</a>' // 吹き出しに表示する内容
+    });
+
+    markerEvent(i);
+  }
+}  
+
+function markerEvent(i) {
+    marker[i].addListener('click', function() {
+      infoWindow[i].open(map, marker[i]);
+      
+      marker[i].addListener('click', function() {
+        
+      });
+    });
+  
+}
+
+
+</script>
+
+<script src="https://maps.googleapis.com/maps/api/js?key=<%= Rails.application.credentials.google_map_api_key %>&callback=initMap" async defer></script>

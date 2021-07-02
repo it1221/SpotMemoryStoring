@@ -1,23 +1,44 @@
-<h2><%= @spot.name %></h2>
-<h4>作成日 <%= @spot.get_created_at %></h4>
-<hr>
-<div class="spot-memories">
-  <% @spot.memories.each do |m| %>
-    <a href="/memories/<%= m.id %>" class="h4">
-      <div class="spot-memory">
-        <h3><%= m.title %></h3>
-        <h5><%= m.get_created_at %></h5>
-      </div>
-    </a>  
+<div class="show-spot-info">
+  <h2><%= @spot.name %></h2>
+  <h4>作成日 <%= @spot.get_created_at %></h4>
+  <% if @current_user.id == @spot.user_id %>
+    <h5 class="spot-private private-<%= @spot.private.to_s %>"><%= @spot.get_private %></h5>
+    <%= link_to "", edit_spot_path, class: "far fa-edit spot-show-edit-link gray" %>
+    <%= link_to "", spot_path, method: :delete, class: "fas fa-trash-alt spot-show-delete-link gray", data: { confirm: @msg } %>
   <% end %>
 </div>
-<% if @current_user.id == @spot.user_id %>
-  <%= link_to "このスポットで新たにメモリーを作成", new_memory_path %>
-  <br>
-  <%= link_to "スポット編集", edit_spot_path %>
-<% end %>
 
-<%= render 'layouts/maps' %>
+<div class="left-content">
+  <div class="spot-memories">
+    <% if @memories.length > 0 %>
+      <% @memories.each do |m| %>
+        <a href="/memories/<%= m.id %>" class="h4">
+          <div class="spot-memory">
+            <h3><%= m.title %></h3>
+            <h5><%= m.get_created_at %></h5>
+          </div>
+        </a>  
+      <% end %>
+    <% else %>
+      <h4>公開されているメモリーはありません。</h4>
+    <% end %>
+  </div>
+  <% if @current_user.id == @spot.user_id %>
+    <%= link_to "このスポットで新たにメモリーを作成", new_memory_path %>
+  <% end %>
+</div>
+
+<div class="right-content">
+  <%= render 'layouts/maps' %>
+</div>
+
+<style>
+#map {
+  margin-right: 0;
+  margin-left: auto;
+  margin-bottom: 0;
+}
+</style>
 
 <script>
 let map
@@ -27,9 +48,9 @@ const display = document.getElementById('display')
 const display2 = document.getElementById('display2')
 const btn = document.getElementById("btn")
 const memo_length = gon.memo_length
-const memo_lat = gon.memo_lat
-const memo_lng = gon.memo_lng
+const memo_latlng = gon.memo_latlng
 const spot_name = gon.spot_name
+
     //btn.setAttribute("disabled", true);
 
 
@@ -37,14 +58,14 @@ function initMap() {
     geocoder = new google.maps.Geocoder();
 
     map = new google.maps.Map(document.getElementById('map'), {
-        center: { lat: memo_lat, lng: memo_lng },
+        center: memo_latlng,
         zoom: 12,
         disableDefaultUI: true,
         zoomControl: true,
     })
 
     marker = new google.maps.Marker({
-            position: { lat: memo_lat, lng: memo_lng },
+            position: memo_latlng,
             map: map,
             icon: {
                 url: "https://maps.google.com/mapfiles/ms/micons/blue-dot.png",

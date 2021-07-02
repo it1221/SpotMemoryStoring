@@ -6,11 +6,13 @@
         <h4><%= memory.title %></h4>        
         <h5>＠<%= memory.get_spot_name %></h5>
         <p class="index-created"><%= memory.get_created_at %></p>
-        <p class="index-private gray"><%= memory.get_private %></p>
+        <% if @user == @current_user %>
+          <p class="index-private private-<%= memory.private.to_s %>"><%= memory.get_private %></p>
+        <% end %>
       </a>   
     <% end %>
     <%= paginate @memories %>
   <% else %>
-    <h4>公開されているメモリーはありません</h4>
+    <h4>公開されているメモリーはありません。</h4>
   <% end %>
 </div>

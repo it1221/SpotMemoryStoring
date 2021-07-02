@@ -18,7 +18,7 @@
 @import "bootstrap";
 html,
 body {
-    height: 100%;
+    height: max-content;
     margin: 0;
     padding: 0;
     background-color: #f0f0ff;
@@ -27,6 +27,7 @@ body {
     border: border-box;
     background-image: url("/assets/images/back_ground.jpg");
     background-size: auto;
+    background-attachment: fixed;
 }
 
 h1 {
@@ -47,6 +48,14 @@ a:hover {
 
 .gray {
     color: gray;
+}
+
+.bold {
+    font-weight: bold;
+}
+
+.float-left {
+    float: left;
 }
 
 .disabled {
@@ -178,7 +187,7 @@ header a:hover {
 
 .header-list {
     list-style: none;
-    margin-left: 75%;
+    margin-left: 65%;
     display: block;
 }
 
@@ -268,7 +277,7 @@ header a:hover {
 }
 
 .text-area {
-    height: 7em;
+    height: 10em;
 }
 
 
@@ -276,10 +285,19 @@ header a:hover {
 
 #user-show-page {
     display: flex;
+    margin-left: 20px;
+}
+
+.user-name {
+    font-size: 2.8em;
 }
 
 .user-info {
-    width: 30%;
+    height: 50em;
+    width: 38%;
+    background-color: white;
+    padding: 1em;
+    box-shadow: 4px 4px 3px -2px gray;
 }
 
 .user-image {
@@ -292,6 +310,12 @@ header a:hover {
 
 .user-introduction {
     word-break: break-all;
+    font-size: 20px;
+}
+
+.user-show-edit-link {
+    font-size: 14px;
+    margin-left: 9px;
 }
 
 .index-created {
@@ -302,6 +326,14 @@ header a:hover {
 .index-private {
     text-align: right;
     font-size: 12px;
+}
+
+.private-true {
+    color: rgb(165, 73, 73);
+}
+
+.private-false {
+    color: rgb(11, 138, 11)
 }
 
 .user-ajax {
@@ -321,7 +353,10 @@ header a:hover {
     padding: 0 2em;
 }
 
-.user-show-content {
+.user-show-content,
+.user-show-info {
+    min-height: 8em;
+    height: auto;
     padding: 5px;
     box-shadow: 4px 4px 3px -2px gray;
     padding: 10px 10px 6px 10px;
@@ -331,6 +366,10 @@ header a:hover {
     display: block;
     transition: all 0.3s;
     color: black;
+}
+
+.user-show-info {
+    padding-top: 20px;
 }
 
 .user-show-content:hover {
@@ -343,6 +382,47 @@ header a:hover {
 .pagination {
     position: relative;
     left: 18em;
+}
+
+.user-menus {
+    list-style: none;
+    width: 100%;
+    background-color: white;
+    display: block;
+    flex-direction: row;
+    margin-top: 3em;
+    margin-left: 0;
+    margin-right: auto;
+}
+
+.user-menu {
+    height: 3.5em;
+    line-height: 3.5em;
+    text-decoration: none;
+    display: block;
+    border: lightblue 0.5px solid;
+    transition: all 0.3s;
+    background-color: white;
+    color: black;
+    padding-left: 11px;
+    font-weight: 300;
+    font-size: 15px;
+    border-radius: 2px;
+}
+
+.user-menu:hover {
+    opacity: 0.6;
+}
+
+
+/*---------------- ユーザー一覧 --------------------*/
+
+.user-image-index {
+    height: 5em;
+    width: 5em;
+    border-radius: 6em;
+    margin: 1em;
+    object-fit: cover;
 }
 
 
@@ -387,8 +467,19 @@ header a:hover {
 /*--------------- スポット詳細 ------------------*/
 
 .spot-memories {
-    width: 40%;
+    width: 90%;
     margin: 0 0 1em 0;
+}
+
+.left-content {
+    width: 50%;
+    float: left;
+}
+
+.right-content {
+    width: 50%;
+    margin-right: 0;
+    margin-left: auto;
 }
 
 .spot-memory {
@@ -406,6 +497,35 @@ header a:hover {
     transform: translate(1px, 1px);
     box-shadow: none;
     opacity: 0.8;
+}
+
+.show-spot-info {
+    height: 7em;
+    border-bottom: 1px lightgray solid;
+    padding-bottom: 5px;
+    margin-bottom: 10px;
+}
+
+.spot-private {
+    float: right;
+    text-align: right;
+    position: relative;
+    right: 2em;
+    bottom: 2.6em;
+}
+
+.spot-show-edit-link {
+    float: right;
+    position: relative;
+    left: 0em;
+    bottom: 4em;
+}
+
+.spot-show-delete-link {
+    float: right;
+    position: relative;
+    left: 4em;
+    bottom: 4em;
 }
 
 
@@ -478,13 +598,19 @@ header a:hover {
 .memory-show-edit-link {
     position: absolute;
     bottom: 4em;
-    right: 2em;
+    right: 4.5em;
+}
+
+.memory-show-delete-link {
+    position: absolute;
+    bottom: 4em;
+    right: 2.5em;
 }
 
 .memo-index-link {
-    margin-top: 1em;
+    margin-top: 2em;
     text-align: right;
-    display: block;
+    display: inline-block;
     color: royalblue;
 }
 
@@ -500,6 +626,15 @@ footer {
 
 #user_btn {
     margin: 2em 2em 0 0;
+}
+
+
+/*----------------- マイマップ -------------------*/
+
+.mymap-head {
+    padding-bottom: 1em;
+    border-bottom: lightgray 1px solid;
+    margin-bottom: 2em;
 }
 
 
@@ -524,13 +659,16 @@ footer {
 }
 
 #map {
-    position: absolute;
     height: 600px;
     width: 600px;
-    left: 40%;
-    top: 8%;
-    right: 0;
-    bottom: 0;
+    position: relative;
+    right: 60px;
+}
+
+#mymap {
+    height: 900px;
+    width: 900px;
+    margin: 0 auto;
 }
 
 #locations-panel {

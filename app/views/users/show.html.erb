@@ -3,25 +3,42 @@
     <img class="user-image" src="<%= "/user_image/#{@user.image_name}.jpg" %>">
     <h2 class="user-name">
       <%= @user.name %>
+      <% if @current_user == @user %>
+        <span><%= link_to "", edit_user_path, class: "far fa-edit user-show-edit-link gray" %></span>
+      <% end %>
     </h2>
     <h4 class="user-introduction">
       <%= simple_format(@user.introduction) %>
     </h4>
-    <% if @current_user == @user %>
-      <%= link_to "[編集]", edit_user_path %>
-      <br>
-    <% end %>
-    <%= link_to "メモリー一覧へ", memories_path %>
-      <br>
-    <%= link_to "スポット一覧へ", spots_path %>
+    <div class="user-menus">
+      <% if @current_user == @user %>
+          <%= link_to "マイマップ", mymap_path, class: "user-menu" %>
+      <% end %>
+      <div id="user_content">
+          <%= link_to "メモリー一覧", memories_path, class: "user-menu" %>
+          <%= link_to "スポット一覧", spots_path, class: "user-menu" %>
+      </div>
+    </div>
   </div>
-  <div class="user-ajax">
-    <% if @show_flag == "memory" %>
-      <%= render 'showmemories' %> 
-    <% elsif @show_flag == "spot" %>
-      <%= render 'showspots' %>
-    <% else %>
-      <%= render 'user_info' %>
-    <% end %>
+
+  <div id="userajax" class="user-ajax">
   </div>
 </div>
+
+<script>
+var show_flag = gon.show_flag
+var display = document.getElementById('userajax')
+var content = document.getElementById('user-content')
+let once = 0
+
+  
+  onload = function(){
+    if (show_flag == "memory") {
+      display.innerHTML = "<%= escape_javascript(render "showmemories") %>";
+    } else if (show_flag == "spot") {
+      display.innerHTML = "<%= escape_javascript(render "showspots") %>";
+    } else {
+      display.innerHTML = "<%= escape_javascript(render "user_info") %>";
+    }
+  }
+</script>

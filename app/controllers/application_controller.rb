@@ -19,6 +19,8 @@ class ApplicationController < ActionController::Base
       end
     end
 
+    
+
     def logged_in?
       unless session[:user_id]
         flash[:danger] = "ログインしてください"
@@ -27,15 +29,15 @@ class ApplicationController < ActionController::Base
     end
 
     def authenticate_user?
-      @user = User.find_by(id: params[:id])    
+      @user = User.find_by(id: session[:show_user_id])
       if @user != @current_user
         flash[:danger] = "権限がありません"
         redirect_to @current_user
       end
     end
 
-    def reset_user_show_session
-      session[:user_show] = nil
+    def reset_user_content_session
+      session[:user_content] = nil
     end
 
 

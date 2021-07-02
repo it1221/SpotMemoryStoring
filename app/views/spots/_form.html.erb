@@ -14,7 +14,16 @@
       </div>
       <div class="form-group row">
         <%= f.label :name, class: "col-sm-2" %>
-        <%= f.text_field :name, class: "form col-sm-5", placeholder: "(例) 行きつけのカフェ 等", value: "" %>
+        <%= f.text_field :name, class: "form col-sm-5", placeholder: "(例) 行きつけのカフェ 等" %>
+      </div>
+      <h5 class="col-sm-2 bold">公開設定</h5><br><br>
+      <div class="form-group row private-select">
+        <%= f.label "非公開", class: "col-sm-2 h5" %>
+        <%= f.radio_button :private, true, class: "radio-btn", checked: true %>
+      </div>
+      <div class="form-group row private-select">
+        <%= f.label "公開", class: "col-sm-2 h5"%>
+        <%= f.radio_button :private, false, class: "radio-btn" %>
       </div>
       <%= f.submit yield(:spotbtn), class: "btn btn-primary col-sm-6 mb-2", id: "btn" %>
     <% end %>

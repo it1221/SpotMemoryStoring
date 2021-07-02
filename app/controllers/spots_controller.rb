@@ -1,33 +1,36 @@
 class SpotsController < ApplicationController
   before_action :logged_in?
-  before_action :reset_user_show_session, only: [:show, :new, :edit]
+  before_action :reset_user_content_session, only: [:show, :new, :edit]
   before_action :authenticate_user?, only: [:edit, :update, :destroy]
 
   def index
-    @user = User.find_by(id: session[:show_user_id])
-    session[:user_show] = "spot"
+    @user = User.find(session[:show_user_id])
+    session[:user_content] = "spot"
     redirect_to @user
-    #@spots.each do |s|
-    #  s.to_latlng
-    #end
   end
 
   def show
-    @spot = Spot.find_by(id: params[:id])
+    @spot = Spot.find(params[:id])
+    @user = User.find(@spot.user_id)
+    session[:show_user_id] = @user.id
     session[:spot_id] = @spot.id
+    @msg = "このスポットを削除すると、ここで作成されたメモリーも消えてしまいます。このスポットを削除してもよろしいですか？"
+    if @current_user == @user
+      @memories = Memory.where(spot_id: @spot.id)
+    else
+      @memories = Memory.where(spot_id: @spot.id).where(private: false)
+    end
     gon.memo_length = @spot.memories.length
-    gon.memo_lat = @spot.to_lat
-    gon.memo_lng = @spot.to_lng
+    gon.memo_latlng = @spot.to_latlng
     gon.spot_name = @spot.name
   end
 
   def new
     @spot = Spot.new
-    session[:user_show] = nil
   end
 
   def create
-    user = User.find_by(id: @current_user.id)
+    user = User.find(@current_user.id)
     @spot = @current_user.spots.build(spot_params)
     @spot.name = "スポット#{user.spots.length + 1 }" if @spot.name.blank?
     if @spot.save
@@ -42,24 +45,37 @@ class SpotsController < ApplicationController
   end
 
   def edit
-    @spot = Spot.find_by(id: params[:id])
+    @spot = Spot.find(params[:id])
   end
 
   def update
-    @spot = Spot.find_by(id: params[:id])
+    @spot = Spot.find(params[:id])
+    memories = Memory.where(spot_id: @spot.id)
+    origin_spot_private = @spot.private
     if @spot.update(spot_params)
-      flash[:info] = "スポットを更新しました。"
+      if !origin_spot_private && @spot.private 
+        memories.each do |m|
+          m.private = true
+          m.save
+          flash[:info] = "スポットが非公開に切り替わったので、このスポットのメモリーも非公開になりました。"
+        end
+      end
       redirect_to @spot
     else
-      flash[:danger] = "スポットの編集に失敗しました。"
       render 'edit'
     end
   end
 
+  def destroy
+    spot = Spot.find(params[:id])
+    spot.destroy
+    flash[:info] = "メモリーを削除しました"
+    redirect_to spots_url
+  end
 
   private
 
     def spot_params
-      params.require(:spot).permit(:name, :address)
+      params.require(:spot).permit(:name, :address, :private)
     end
 end

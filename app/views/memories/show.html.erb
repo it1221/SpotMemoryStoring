@@ -7,9 +7,10 @@
     <h4><%= simple_format(@memory.content) %></h4>
     <h4 class="memory-show-user-link">By <%= link_to @user.name, @user, class: "h4" %></h4>
     <% if @current_user.id == @memory.user_id %>
-      <%= link_to "[編集]", edit_memory_path, class: "memory-show-edit-link" %>
+      <%= link_to "", edit_memory_path, class: "far fa-edit memory-show-edit-link gray" %>
+      <%= link_to "", memory_path, method: :delete, class: "fas fa-trash-alt memory-show-delete-link gray", data: { confirm: @msg } %>
+      <h5 class="memory-private private-<%= @memory.private.to_s %>"><%= @memory.get_private %></h5>
     <% end %>
-    <h5 class="memory-private"><%= @memory.get_private %></h5>
     <div class="memory-time">
       <p><%= @memory.get_created_at %></p>
     </div>

@@ -1,11 +1,5 @@
 <% provide(:btnvalue, "作成") %>
 <h2>メモリー作成</h2>
-<div id="new-memory">  
-  <h3 class="memory-spot">
-    @<%= @current_spot.name %>
-  </h3>
-</div>
 
-  <%= form_with(model: @memory, url: memories_path, method: :post, local: true) do |f| %>
-    <%= render 'form' %>
-  <% end %>
+<%= render 'form' %>
+  

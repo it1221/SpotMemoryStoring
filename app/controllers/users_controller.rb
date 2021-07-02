@@ -1,24 +1,33 @@
 class UsersController < ApplicationController
   before_action :logged_in?, only: [:index, :show, :edit, :update, :destory]
   before_action :authenticate_user?, only: [:edit, :update, :destroy]
-  before_action :reset_user_show_session, only: [:index, :new, :login, :edit, :logout]
+  before_action :reset_user_content_session, only: [:index, :new, :login, :edit, :logout]
 
   def index
-    @users = User.paginate(page: params[:page]).includes(:spot, :memory)
+    @users = params[:name].present? ? User.where(name: params[:name]) : User.all
+    @users = @users.page(params[:page])
   end
 
   def show 
-    @user = User.find_by(id: params[:id])
+    @user = User.find(params[:id])
     session[:show_user_id] = @user.id
-    @show_flag = session[:user_show]
-    @count = 0
+    gon.show_flag = session[:user_content]
     if @user == @current_user
       @memories = Memory.page(params[:page]).where(user_id: @user.id).per(10)
       @spots = Spot.page(params[:page]).where(user_id: @user.id).per(10)
+      @memory_amount = @user.memories.length
+      @private_m_amount = Memory.where(user_id: @user.id).where(private: true).length
+      @public_m_amount = @memory_amount - @private_m_amount
+      @spot_amount = @user.spots.length
+      @private_s_amount = Spot.where(user_id: @user.id).where(private: true).length
+      @public_s_amount = @spot_amount - @private_s_amount
     else
       @memories = Memory.page(params[:page]).where(user_id: @user.id).where(private: false).per(10)
-      @spots = Spot.page(params[:page]).where(user_id: @user.id).per(10)
+      @spots = Spot.page(params[:page]).where(user_id: @user.id).where(private: false).per(10)
+      @memory_amount = Memory.where(user_id: @user.id).where(private: false).length
+      @spot_amount = Spot.where(user_id: @user.id).where(private: false).length
     end
+    
   end
 
   def new 
@@ -42,7 +51,7 @@ class UsersController < ApplicationController
   end
 
   def update
-    @user = User.find_by(id: params[:id])
+    @user = User.find(params[:id])
     if image = params[:user][:image_name]
       @user.image_name = "#{@user.id}"
       File.binwrite("public/user_image/#{@user.image_name}.jpg", image.read)
@@ -79,6 +88,14 @@ class UsersController < ApplicationController
     redirect_to root_path
   end
 
+  def mymap
+    @user = User.find(@current_user.id)
+    spot = @user.spots.first
+    spots = Spot.where(user_id: @user.id)
+    gon.s_latlng = spot.memories_latlng_to_js
+    gon.s_name = spots.map { |spot| spot.name }
+    gon.s_id = spots.map { |spot| spot.id }
+  end
 
   private
 

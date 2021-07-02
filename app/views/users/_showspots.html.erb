@@ -1,13 +1,19 @@
 <div class="user-show">
   <h2 class="user-show-sub"><% if @user == @current_user %>マイ<% end %>スポット</h2>
-  
-  <% @spots.each do |spot| %>
-    <a href="/spots/<%= spot.id %>">
-      <div class="user-show-content">
-        <h4><%= spot.name %></h4>        
-        <h5>登録メモリー数 <%= spot.memories.length %></h5>
-      </div>
-    </a>
+  <% if @spots.length > 0 %>
+    <% @spots.each do |spot| %>
+      <a href="/spots/<%= spot.id %>">
+        <div class="user-show-content">
+          <h4><%= spot.name %></h4>        
+          <h5>登録メモリー数 <%= spot.memories.length %></h5>
+          <% if @user == @current_user %>
+            <p class="index-private private-<%= spot.private.to_s %>"><%= spot.get_private %></p>
+          <% end %>
+        </div>
+      </a>
+    <% end %>
+    <%= paginate @spots %>
+  <% else %>
+    <h4>公開されているスポットはありません。</h4>
   <% end %>
-  <%= paginate @spots %>
 </div>

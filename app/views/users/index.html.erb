@@ -1,12 +1,30 @@
-<%= form_with(model: @spot, local: true) do |f| %>
-  <%= render 'layouts/map' %>
-  <div class="mapresult">
-    <div class="field">
-      <%= f.text_area :content, placeholder: "Compose new micropost..." %>
+<div class="search-top">
+  <h2>フレンドを探す<i class="fas fa-search"></i></h2>
+</div>
+<div class="search-form">
+  <%= form_with url: users_path, method: :get, remote: true do %>
+    <div class="form-group row">
+      <%= text_field_tag :name, '', class: "form form-control js-text_filed",remote: true, onchange: 'submit(this.form);' %>
     </div>
-    <%= f.submit "保存", class: "btn btn-primary" %>
-    <span class="image">
-      <%= f.file_field :image, accept: "image/jpeg,image/gif,image/png" %>
-    </span>
-  </div>
-<% end %>
+  <% end %>
+</div>
+
+<%= render @users %>
+
+<script>
+  //$('h2').css('color', '#fff');
+  $(function(){
+    $('.js-text_field').on('keyup', function(){
+      var title = $.trim($(this).val());
+
+      $.ajax({
+        type: 'GET', // リクエストのタイプ
+        url: '/users', // リクエストを送信するURL
+        data:  { name: title }, // サーバーに送信するデータ
+        dataType: 'json' // サーバーから返却される型
+      })
+    });
+  });
+
+
+</script>

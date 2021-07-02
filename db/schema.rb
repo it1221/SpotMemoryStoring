@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_06_21_083903) do
+ActiveRecord::Schema.define(version: 2021_06_30_152151) do
 
   create_table "memories", force: :cascade do |t|
     t.string "title"
@@ -21,6 +21,7 @@ ActiveRecord::Schema.define(version: 2021_06_21_083903) do
     t.integer "user_id"
     t.integer "spot_id"
     t.index ["created_at", "user_id", "spot_id"], name: "index_memories_on_created_at_and_user_id_and_spot_id"
+    t.index ["private"], name: "index_memories_on_private"
     t.index ["spot_id"], name: "index_memories_on_spot_id"
     t.index ["user_id"], name: "index_memories_on_user_id"
   end
@@ -30,9 +31,10 @@ ActiveRecord::Schema.define(version: 2021_06_21_083903) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.integer "user_id"
-    t.string "name", default: "名無しのスポット"
+    t.boolean "private", default: true
+    t.string "name"
     t.index ["address", "user_id"], name: "index_spots_on_address_and_user_id"
-    t.index ["name"], name: "index_spots_on_name"
+    t.index ["private"], name: "index_spots_on_private"
     t.index ["user_id"], name: "index_spots_on_user_id"
   end
 

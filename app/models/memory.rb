@@ -13,11 +13,4 @@ class Memory < ApplicationRecord
     return spot.name
   end
 
-  def get_private
-    if !!self.private
-      return "非公開設定中"
-    else
-      return "公開中"
-    end
-  end
 end

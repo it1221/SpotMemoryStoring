@@ -1,3 +1,9 @@
+  <div id="new-memory">  
+    <h3 class="memory-spot">
+      @<%= @current_spot.name %>
+    </h3>
+  </div>
+
   <% unless @memory.errors.full_messages.nil? %>
     <% @memory.errors.full_messages.each do |msg| %>
       <div class="alert-danger">  * <%= msg %> <br> </div>
@@ -13,17 +19,20 @@
     </div>
     <div class="form-group row">  
       <%= f.label :content, class: "col-sm-2 h4" %>
-      <%= f.text_area :content, class: "form col-sm-8 text-area" %>
+      <%= f.text_area :content, class: "form col-sm-8 text-area", placeholder: "(例) 今日の勉強内容、Dolphin：イルカ、7/7 ジンベイザメを見た など" %>
     </div>
-    <br><br>
+    <br><br><br><br>
     <h4 class="col-sm-1">公開設定</h4><br><br>
+    <% if @current_spot.private %>
+      <h5 class="col-sm-8 private-true">非公開スポットではメモリーも非公開になります。</h5><br><br>
+    <% end %>
     <div class="form-group row private-select">
       <%= f.label "非公開", class: "col-sm-1 h5"%>
-      <%= f.radio_button :private, true, class: "radio-btn" %>
+      <%= f.radio_button :private, true, class: "radio-btn",　checked: true, disabled: @current_spot.private %>
     </div>
     <div class="form-group row private-select">
       <%= f.label "公開", class: "col-sm-1 h5"%>
-      <%= f.radio_button :private, false, class: "radio-btn" %>
+      <%= f.radio_button :private, false, class: "radio-btn", disabled: @current_spot.private %>
     </div>
     <hr>
     <div class="form-group row">

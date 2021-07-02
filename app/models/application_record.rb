@@ -8,4 +8,13 @@ class ApplicationRecord < ActiveRecord::Base
     create_format.gsub!(/pm/, '午後')
     return create_format
   end
+
+  def get_private
+    if !!self.private
+      return "非公開設定中"
+    else
+      return "公開中"
+    end
+  end
+  
 end
