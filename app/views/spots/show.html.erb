@@ -3,8 +3,8 @@
   <h4>作成日 <%= @spot.get_created_at %></h4>
   <% if @current_user.id == @spot.user_id %>
     <h5 class="spot-private private-<%= @spot.private.to_s %>"><%= @spot.get_private %></h5>
-    <%= link_to "", edit_spot_path, class: "far fa-edit spot-show-edit-link gray" %>
-    <%= link_to "", spot_path, method: :delete, class: "fas fa-trash-alt spot-show-delete-link gray", data: { confirm: @msg } %>
+    <%= link_to "", edit_spot_path, class: "far fa-edit spot-show-edit-link gray", title: "編集" %>
+    <%= link_to "", spot_path, method: :delete, class: "fas fa-trash-alt spot-show-delete-link gray", title: "削除", data: { confirm: @msg } %>
   <% end %>
 </div>
 

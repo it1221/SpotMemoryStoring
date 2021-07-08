@@ -1,5 +1,5 @@
 <div class="search-top">
-  <h2>友達を探す<i class="fas fa-search"></i></h2>
+  <h2>友達を探す <i class="fas fa-search"></i></h2>
 </div>
 <div class="search-form">
   <%= form_with url: users_path, method: :get, remote: true do %>
@@ -12,6 +12,7 @@
   <% @users.each do |user| %>
     <div class="js-user"><%= render user %></div>
   <% end %>
+  <%= paginate @users %>
 </div>
 
 
@@ -33,7 +34,7 @@
 
           $(data).each(function(i, user) {
             $('.js-users').append(
-              `<a href="/messages/${user.id}" class="user-show-content js-user"><img src="/user_image/${user.image_name}.jpg" 
+              `<a href="/users/${user.id}" class="user-show-content js-user"><img src="/user_image/${user.image_name}.jpg" 
               class="user-image-index float-left", alt="User Image"><h3>${user.name}</h3></a>`
             );
           });

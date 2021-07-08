@@ -1,0 +1,8 @@
+<div class="smaller-container">
+  <% @inquiries.each do |inquiry| %>
+    <h3>お名前：<%= inquiry.name %></h3>
+    <h3>メールアドレス：<%= inquiry.email %></h3>
+    <h3>お問い合わせ内容<%= inquiry.content %></h3>
+    <%= link_to "削除", inquiry_path(id: inquiry.id), method: :delete %>
+  <% end %>
+</div>

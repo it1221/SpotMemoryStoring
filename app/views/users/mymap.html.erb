@@ -1,4 +1,5 @@
 <h2 class="mymap-head">マイマップ<span>< <%= @user.name %> ></span></h2>
+
 <div id="mymap" class="embed-responsive"></div>
 
 <script>
@@ -18,7 +19,7 @@ function initMap() {
   geocoder = new google.maps.Geocoder();
   map = new google.maps.Map(document.getElementById('mymap'), {
     center: s_latlng[0],
-    zoom: 10,
+    zoom: 5,
     disableDefaultUI: true,
     zoomControl: true,
   });
@@ -34,7 +35,7 @@ function initMap() {
     });
 
     infoWindow[i] = new google.maps.InfoWindow({ // 吹き出しの追加
-      content: '<h5>' + s_name[i] + '</h5> <a name="スポット詳細へ" href="/spots/' + s_id[i] + '">詳細へ</a>' // 吹き出しに表示する内容
+      content: '<h5>' + s_name[i] + '</h5> <a href="/spots/' + s_id[i] + '">詳細へ</a>' // 吹き出しに表示する内容
     });
 
     markerEvent(i);

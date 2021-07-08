@@ -4,14 +4,14 @@
     <h2 class="user-name">
       <%= @user.name %>
       <% if @current_user == @user %>
-        <span><%= link_to "", edit_user_path, class: "far fa-edit user-show-edit-link gray" %></span>
+        <span><%= link_to "", edit_user_path, class: "far fa-edit user-show-edit-link gray", title: "編集" %></span>
       <% end %>
     </h2>
     <h4 class="user-introduction">
-      <%= simple_format(@user.introduction) %>
+      <%= @user.introduction.blank? ? "自己紹介文がまだありません。" : simple_format(@user.introduction) %>
     </h4>
     <div class="user-menus">
-      <% if @current_user == @user %>
+      <% if @current_user == @user && @current_user.spots.length > 0 %>
           <%= link_to "マイマップ", mymap_path, class: "user-menu" %>
       <% end %>
       <div id="user_content">

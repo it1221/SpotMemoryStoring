@@ -13,16 +13,6 @@ class Spot < ApplicationRecord
     return {lat: latlng[0].to_f, lng: latlng[1].to_f }
   end
 
-  def to_lat
-    latlng = self.address.split(',')
-    return latlng[0].to_f
-  end
-
-  def to_lng
-    latlng = self.address.split(',')
-    return latlng[1].to_f
-  end
-
   def memories_latlng_to_js
     spots = Spot.where(user_id: self.user_id)
     s_latlng = []

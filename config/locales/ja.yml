@@ -22,6 +22,10 @@ ja:
         title: タイトル
         content: 内容
         private: 非公開にする
+      inquiry:
+        name: お名前
+        email: メールアドレス
+        content: お問い合わせ内容
   views:
     pagination:
       first: 最初

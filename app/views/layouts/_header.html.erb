@@ -1,7 +1,12 @@
 <header>
   <%= link_to "Spot Memory Storing", root_path, class: "header-title" %>
-
+  
+  <i class="fas fa-bars header-list-icon" id="menu_icon"></i>
+  
   <ul class="header-list">
+    <% if @current_user && @current_user.admin %>
+      <li><%= link_to "問い合わせ内容", inquiries_path, class: "header-link" %></li>
+    <% end %>
     <% if @current_user %>
       <li>
         <% if request.path == user_path(@current_user) %>
@@ -43,8 +48,20 @@
   </ul>
 
 </header>
+<%= render 'layouts/mini_header_menus' %>
 
 <script>
-  
+  $('#menu_icon').click(function() {
+    if($(this).hasClass('open')){
+      $(this).css("opacity", "1");
+      $('#mini_header_menus').slideUp();
+      $(this).removeClass('open');
+    } else {
+      $(this).css("opacity", "0.6");
+      $('#mini_header_menus').slideDown();
+      $(this).addClass(' open');
+    }
+  });
 
+  
 </script>

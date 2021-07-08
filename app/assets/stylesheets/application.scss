@@ -30,8 +30,8 @@ body {
     background-attachment: fixed;
 }
 
-h1 {
-    font-family: 'Arial Narrow';
+* {
+    box-sizing: border-box;
 }
 
 a {
@@ -46,46 +46,65 @@ a:hover {
     margin-top: 1em;
 }
 
-.gray {
-    color: gray;
+.animation {
+    transition: all 0.2s;
 }
 
 .bold {
     font-weight: bold;
 }
 
-.float-left {
-    float: left;
-}
-
-.disabled {
-    pointer-events: none;
-}
-
-.animation {
-    transition: all 0.2s;
+.border-bottom {
+    border-bottom: gray 1px solid;
 }
 
 .btn {
     margin: 1em 0;
 }
 
-.pad-top {
-    padding-top: 2em;
-}
-
 .container {
     background-color: #f6f6ff;
     box-shadow: 4px 4px 6px -2px gray;
-    height: 140em;
+    min-height: 65em;
+    height: auto;
     width: 80%;
     padding: 2em 1em;
     position: relative;
 }
 
+.disabled {
+    pointer-events: none;
+}
+
+.float-left {
+    float: left;
+}
+
+.gray {
+    color: gray;
+}
+
+h1 {
+    font-family: 'Arial Narrow';
+}
+
+.pad-top {
+    padding-top: 2em;
+}
+
+.royalblue {
+    color: royalblue;
+}
+
 .smaller-container {
+    height: auto;
     width: 80%;
     margin: 0 auto;
+}
+
+.spacing {
+    height: 5em;
+    margin: 15em 0;
 }
 
 
@@ -95,6 +114,7 @@ a:hover {
     height: 800px;
     width: 100%;
     position: relative;
+    bottom: 25px;
 }
 
 .top-image {
@@ -107,7 +127,7 @@ a:hover {
     left: -15px;
     .top-title {
         color: white;
-        font-size: 5em;
+        font-size: 7rem;
         margin-top: 1em;
         font-family: Cochin;
         text-align: center;
@@ -146,16 +166,56 @@ a:hover {
     margin: 2em 0 5em 0;
 }
 
+.introduction-head {
+    font-size: large;
+}
+
+.introduction-content {
+    margin-top: 4em;
+}
+
+.introduction-images {
+    flex-direction: column;
+    margin-bottom: 6em;
+}
+
+.introduction-image {
+    height: auto;
+    width: 40%;
+}
+
 .btn-info {
     width: 15em;
     border-radius: 3px;
     box-shadow: 0 4px lightgray;
     transition: all 0.3s;
+    &:active {
+        transform: translate(0, 4px);
+        box-shadow: none;
+    }
 }
 
-.btn-info:active {
-    transform: translate(0, 4px);
-    box-shadow: none;
+@media screen and (max-width:1024px) {
+    .top-image {
+        height: 550px;
+        width: 104%;
+        position: absolute;
+        top: -17px;
+        left: -10px;
+        margin: 0 auto;
+        .top-title {
+            font-size: 5rem;
+            margin-top: 1em;
+        }
+        .top-p {
+            letter-spacing: 3px;
+            margin-top: 2em;
+            font-size: 14px;
+        }
+    }
+    .introduction {
+        margin-top: 1em;
+    }
 }
 
 
@@ -176,25 +236,30 @@ header {
     padding: 0 0 8px 6px;
     color: white;
     font-size: 2em;
-    font-weight: bold;
-    font-family: sans-serif;
+    font-family: "YuGothic";
     line-height: 62px;
     margin: 0 0.6em;
     float: left;
     transition: all 0.3s;
     display: inline;
+    &:hover {
+        color: white;
+    }
 }
 
-.header-title:hover {
-    color: white;
+.header-image {
+    height: 30px;
+    width: auto;
+    border-radius: 6px;
+    float: left;
+    margin-top: 16px;
 }
 
 header a {
     text-decoration: none;
-}
-
-header a:hover {
-    text-decoration: none;
+    &:hover {
+        text-decoration: none;
+    }
 }
 
 .header-list {
@@ -203,12 +268,18 @@ header a:hover {
     display: block;
 }
 
+@media screen and (max-width:1315px) {
+    .header-list {
+        margin-left: 55%;
+    }
+}
+
 .header-link {
     height: 62px;
     width: 7em;
     line-height: 62px;
     color: white;
-    font-size: large;
+    font-size: 15px;
     font-weight: bold;
     display: block;
     float: left;
@@ -220,6 +291,11 @@ header a:hover {
     text-overflow: ellipsis;
     white-space: nowrap;
     padding: 0 3px 3px 3px;
+    &:hover {
+        box-shadow: 5px 5px 4px rgb(22, 99, 199) inset;
+        text-shadow: 4px 4px rgb(22, 99, 199);
+        color: white;
+    }
 }
 
 .user-image-link {
@@ -235,7 +311,7 @@ header a:hover {
     height: 62px;
     width: 7em;
     line-height: 62px;
-    font-size: large;
+    font-size: 15px;
     font-weight: bold;
     display: block;
     float: left;
@@ -248,10 +324,46 @@ header a:hover {
     padding: 0 3px 3px 3px;
 }
 
-.header-link:hover {
-    box-shadow: 5px 5px 4px rgb(22, 99, 199) inset;
-    text-shadow: 4px 4px rgb(22, 99, 199);
-    color: white;
+header {
+    .header-list-icon {
+        display: none;
+    }
+}
+
+.mini-header-menus {
+    display: none;
+    background-color: lightgray;
+    border: #777 1px solid;
+    border-radius: 2px;
+    list-style: none;
+    height: fit-content;
+    width: 8em;
+    padding: 0 0 0 20px;
+    flex-direction: column;
+    position: fixed;
+    top: 62px;
+    right: 0px;
+    opacity: 0.8;
+    box-sizing: content-box;
+    z-index: 4;
+    .mini-header-link {
+        color: rgba(0, 0, 0, 0.9);
+        position: relative;
+        right: 15px;
+        font-size: 14px;
+        display: block;
+        line-height: 25px;
+        &:hover {
+            background-color: darken($color: lightgray, $amount: 15);
+        }
+    }
+}
+
+.mini-header-link-selected {
+    position: relative;
+    right: 15px;
+    background-color: darken($color: lightgray, $amount: 20);
+    line-height: 30px;
 }
 
 
@@ -308,8 +420,8 @@ header a:hover {
     height: 50em;
     width: 38%;
     background-color: white;
+    border: lightblue 1px solid;
     padding: 1em;
-    box-shadow: 4px 4px 3px -2px gray;
 }
 
 .user-image {
@@ -441,6 +553,14 @@ header a:hover {
     width: 70%;
 }
 
+.you {
+    background-color: rgba(170, 170, 170, 0.7);
+    color: #222;
+    font-size: 12px;
+    margin-left: 6px;
+    border-radius: 2px;
+}
+
 
 /*---------------- スポット作成 -----------------*/
 
@@ -477,6 +597,12 @@ header a:hover {
     position: absolute;
     top: 7.5em;
     left: 3em;
+}
+
+@media screen and (max-width:767px) {
+    .memory-spot {
+        width: 100%;
+    }
 }
 
 
@@ -571,7 +697,8 @@ header a:hover {
 }
 
 .memory-show {
-    height: 25em;
+    min-height: 20em;
+    height: auto;
     width: 80%;
     margin: auto;
     margin-top: 1em;
@@ -634,14 +761,52 @@ header a:hover {
 /*------------------ フッター ---------------------*/
 
 footer {
-    height: 20em;
+    height: 15em;
     width: auto;
     background-color: royalblue;
-    padding-bottom: 4em;
+    padding: 1em 4em;
+    color: white;
+}
+
+.footer-upper {
+    height: 90%;
+    display: flex;
+}
+
+.footer-left {
+    width: 80%;
+    font-family: "YuGothic";
+}
+
+.footer-right {
+    width: 20%;
+    margin-top: 2em;
+    text-align: left;
+    .links {
+        list-style: none;
+    }
+    .contact-link {
+        text-decoration: none;
+        color: white;
+        line-height: 34px;
+    }
+}
+
+.footer-lower {
+    height: 10%;
+    text-align: center;
 }
 
 #user_btn {
     margin: 2em 2em 0 0;
+}
+
+
+/*--------------- お問い合わせ ----------------*/
+
+#inquiry-btn {
+    position: relative;
+    top: 10em;
 }
 
 
@@ -698,6 +863,12 @@ footer {
     padding: 0.5em;
     box-sizing: border-box;
 }
+
+
+/*---------------- フレキシブル(max-width 876px) ----------------*/
+
+
+/*---------------- マップ -----------------*/
 
 @media only screen and (max-width: 876px) {
     #map {
@@ -971,4 +1142,112 @@ footer {
     position: absolute;
     top: 200px;
     left: 10px;
+}
+
+@media screen and (max-width:1024px) {
+    header {
+        .header-list-icon {
+            display: block;
+            width: 60px;
+            text-align: center;
+            color: white;
+            font-size: 20px;
+            float: right;
+            line-height: 62px;
+            margin-right: 2em;
+            transition: all 0.3s;
+            &:hover {
+                cursor: pointer;
+                opacity: 0.7;
+            }
+        }
+        .header-list {
+            display: none;
+        }
+    }
+    #mymap {
+        height: 600px;
+        width: 600px;
+    }
+    #map {
+        position: absolute;
+        top: 40em;
+        margin: 0 auto;
+        clear: left;
+    }
+    .container {
+        height: 100em;
+    }
+    .spot-new {
+        width: 180%;
+    }
+}
+
+@media screen and (max-width:900px) {
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    p {
+        font-size: smaller;
+    }
+    .container {
+        width: 100%;
+        height: 130em;
+    }
+    #map {
+        height: 400px;
+        width: 400px;
+        margin: 0 auto;
+    }
+    #mymap {
+        height: 500px;
+        width: 500px;
+        margin: 0 auto;
+    }
+}
+
+@media screen and (max-width:767px) {
+    header {
+        height: 50px;
+        .header-title {
+            font-size: 14px;
+            line-height: 50px;
+        }
+        .header-list-icon {
+            position: relative;
+            bottom: 4px;
+            left: 10px;
+        }
+    }
+    .mini-header-menus {
+        position: fixed;
+        top: 50px;
+        right: 0px;
+    }
+    .container {
+        height: 200em;
+    }
+    .spot-new {
+        width: 120%;
+    }
+    #map {
+        height: 350px;
+        width: 350px;
+    }
+    #mymap {
+        height: 400px;
+        width: 400px;
+    }
+    .user-info {
+        width: 100%;
+    }
+    #user-show-page {
+        flex-direction: column;
+        margin: 0 auto;
+    }
+    #userajax {
+        width: 90%;
+    }
 }

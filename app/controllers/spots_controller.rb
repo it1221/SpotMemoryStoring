@@ -62,6 +62,7 @@ class SpotsController < ApplicationController
       end
       redirect_to @spot
     else
+      flash[:info] = "スポットを更新しました"
       render 'edit'
     end
   end

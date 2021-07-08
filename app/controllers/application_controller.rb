@@ -5,7 +5,7 @@ class ApplicationController < ActionController::Base
 
     def set_current_user
       if session[:user_id]
-        @current_user = User.find_by(id: session[:user_id])
+        @current_user = User.find(session[:user_id])
       else
         @current_user = nil
       end
@@ -29,10 +29,24 @@ class ApplicationController < ActionController::Base
     end
 
     def authenticate_user?
-      @user = User.find_by(id: session[:show_user_id])
+      @user = User.find(session[:show_user_id])
       if @user != @current_user
         flash[:danger] = "権限がありません"
         redirect_to @current_user
+      end
+    end
+
+    def not_logged_in?
+      if session[:user_id]
+        flash[:info] = "すでにログインしています"
+        redirect_to @current_user
+      end
+    end
+
+    def admin_user?
+      unless @current_user.admin?
+        flash[:danger] = "権限がありません"
+        redirect_to root_path
       end
     end
 

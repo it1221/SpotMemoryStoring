@@ -9,7 +9,9 @@ Rails.application.routes.draw do
   post 'login', to: 'users#login'
   post 'logout', to: 'users#logout'
   get 'mymap', to: 'users#mymap'
+  get 'feed', to: 'inquiries#feed'
   resources :users
   resources :spots
   resources :memories
+  resources :inquiries, only: [:index, :new, :create, :destroy]
 end
