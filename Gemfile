@@ -26,7 +26,6 @@ gem 'dotenv-rails'
 gem 'rails-i18n'
 gem 'gon'
 gem 'kaminari'
-gem 'pg', '~> 0.17.1'
 
 
 # Use Active Storage variant
