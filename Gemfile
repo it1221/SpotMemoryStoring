@@ -1,7 +1,7 @@
 source 'https://rubygems.org'
 git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
-
+ruby '2.6.3'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails', branch: 'main'
 gem 'rails', '~> 6.1.3', '>= 6.1.3.1'
@@ -25,10 +25,8 @@ gem 'bcrypt', '~> 3.1.7'
 gem 'dotenv-rails'
 gem 'rails-i18n'
 gem 'gon'
-gem 'will_paginate'
-gem 'bootstrap-will_paginate'
 gem 'kaminari'
-
+gem 'pg', '~> 0.17.1'
 
 
 # Use Active Storage variant
@@ -64,8 +62,5 @@ group :test do
   gem 'webdrivers'
 end
 
-group :production do
-  gem 'pg', '~> 0.17.1'
-end
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 # gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
